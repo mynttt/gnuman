@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="background-rms" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="875.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hshannover.inform.gnuman.gui.MainWindowController">
+   <children>
+      <VBox layoutX="288.0" layoutY="251.0" prefHeight="335.0" prefWidth="300.0">
+         <children>
+            <Button id="button-menu" mnemonicParsing="false" onAction="#switchToNewGame" prefWidth="500.0" text="NEW GAME">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button id="button-menu" mnemonicParsing="false" onAction="#switchToHighscore" prefWidth="500.0" text="HIGHSCORE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button id="button-menu" mnemonicParsing="false" onAction="#switchToOptions" prefWidth="500.0" text="OPTIONS">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button id="button-menu" mnemonicParsing="false" onAction="#switchToExtras" prefWidth="200.0" text="EXTRAS">
+                     <HBox.margin>
+                        <Insets right="10.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="button-menu" mnemonicParsing="false" onAction="#exitGame" prefWidth="200.0" text="EXIT">
+                     <HBox.margin>
+                        <Insets top="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <BorderPane fx:id="textTickerRoot" layoutY="548.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="875.0" />
+   </children>
+</AnchorPane>

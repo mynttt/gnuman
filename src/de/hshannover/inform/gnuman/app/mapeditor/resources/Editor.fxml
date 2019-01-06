@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.CustomMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="root" minHeight="400.0" minWidth="510.0" prefHeight="400.0" prefWidth="974.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="de.hshannover.inform.gnuman.app.mapeditor.EditorController">
+   <bottom>
+      <BorderPane prefHeight="30.0" prefWidth="946.0" BorderPane.alignment="CENTER">
+         <left>
+            <Label fx:id="selectedOperation" text="SELECTED OPERATION" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="4.0" left="10.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </left>
+         <right>
+            <Label fx:id="lastStatus" text="STATUS" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets bottom="4.0" right="10.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </right>
+         <padding>
+            <Insets top="2.0" />
+         </padding>
+      </BorderPane>
+   </bottom>
+   <top>
+      <VBox prefHeight="80.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#newMap" text="New">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#openMap" text="Open...">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="save" mnemonicParsing="false" onAction="#saveMap" text="Save">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem fx:id="saveAs" mnemonicParsing="false" onAction="#saveMapAs" text="Save as...">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#resetMap" text="Reset" />
+                    <MenuItem mnemonicParsing="false" onAction="#exitAskSave" text="Quit" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem fx:id="redoField" mnemonicParsing="false" onAction="#redo" text="Redo">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="Y" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem fx:id="undoField" mnemonicParsing="false" onAction="#undo" text="Undo">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Properties">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#modifyMetaData" text="Edit Metadata" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#modifyScatterData" text="Edit Scatter Data" />
+                        <MenuItem mnemonicParsing="false" onAction="#defaultScatterData" text="Default Scatter Data" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Tools">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#fillEmptyWithFood" text="Fill Empty Areas with Food" />
+                        <MenuItem mnemonicParsing="false" onAction="#fixByConversion" text="Fix Invalid Teleporters by Conversion" />
+                        <MenuItem mnemonicParsing="false" onAction="#fixByRemoval" text="Fix Invalid Teleporters by Removal" />
+                        <MenuItem mnemonicParsing="false" onAction="#cleanUselessProperties" text="Clean Useless Properties" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Preview">
+                     <items>
+                        <CheckMenuItem fx:id="toggleDisplayGrid" mnemonicParsing="false" selected="true" text="Display Grid" />
+                        <CheckMenuItem fx:id="toggleDisplayProperties" mnemonicParsing="false" selected="true" text="Display Properties" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <RadioMenuItem fx:id="toggleRenderAsBlocks" mnemonicParsing="false" selected="true" text="Render as Colored Blocks" />
+                        <RadioMenuItem fx:id="toggleRenderAsBackground" mnemonicParsing="false" text="Render as Background" />
+                        <RadioMenuItem fx:id="toggleRenderAsFlashmap" mnemonicParsing="false" text="Render as Flashmap" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <CheckMenuItem fx:id="toggleRenderAsItems" mnemonicParsing="false" text="Render Items as Textures" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Zoom">
+                    <items>
+                        <CheckMenuItem fx:id="automaticFit" disable="true" mnemonicParsing="false" selected="true" text="Automatic Fit to Window" />
+                        <MenuItem mnemonicParsing="false" onAction="#resetToFitWindow" text="Reset Zoom to Fit Window" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <CustomMenuItem mnemonicParsing="false" text="Zoom">
+                           <content>
+                              <Slider id="slider" fx:id="scaleSlider" blockIncrement="1.0" disable="true" max="200.0" prefWidth="175.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="20.0" />
+                           </content>
+                        </CustomMenuItem>
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Background Generation">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#generateBackground" text="Generate Background" />
+                        <MenuItem mnemonicParsing="false" onAction="#generateFlashmap" text="Generate Flashmap" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <RadioMenuItem fx:id="toggleBackgroundDefault" mnemonicParsing="false" selected="true" text="Default Background Sheet" />
+                        <RadioMenuItem fx:id="toggleBackgroundOneColor" mnemonicParsing="false" text="Default Background (One Color) Sheet" />
+                        <RadioMenuItem fx:id="toggleBackgroundCustom" mnemonicParsing="false" text="Load Custom Background Sheet for Algorithm..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <RadioMenuItem fx:id="toggleFlashmapDefault" mnemonicParsing="false" selected="true" text="Default Flashmap Sheet" />
+                        <RadioMenuItem fx:id="toggleFlashmapCustom" mnemonicParsing="false" text="Load Custom Flashmap Sheet for Algorithm..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadBackgroundImage" text="Load Background from Image" />
+                        <MenuItem mnemonicParsing="false" onAction="#loadFlashmapImage" text="Load Flashmap from Image" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="About">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#showHelp" text="Help" />
+                        <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#showCredits" text="Credits" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+            <HBox prefHeight="100.0" prefWidth="830.0">
+               <children>
+                  <ChoiceBox fx:id="mapBlocks" prefHeight="100.0" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <Button mnemonicParsing="false" onAction="#selectDrawTool" prefHeight="105.0" prefWidth="100.0">
+                  	 <tooltip>
+       				     <Tooltip text="Draw Tool allows you to draw blocks on the map." />
+    				 </tooltip>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pencil.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#selectLineTool" prefHeight="100.0" prefWidth="100.0">
+                     <tooltip>
+                        <Tooltip text="Line Tool allows you to draw vertical/horizontal lines of blocks." />
+                     </tooltip>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@school-material.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#selectEraseTool" prefHeight="100.0" prefWidth="100.0">
+                     <tooltip>
+       				     <Tooltip text="Eraser Tool allows you to delete blocks and their associated properties." />
+    				 </tooltip>
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@eraser.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Separator orientation="VERTICAL" prefHeight="200.0">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Separator>
+                  <Button mnemonicParsing="false" onAction="#selectModifierTool" prefHeight="100.0" prefWidth="100.0">
+                     <tooltip>
+       				     <Tooltip text="Modifier Tool allows you to modify properties of a block." />
+    				 </tooltip>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@check.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#selectValidationTool" prefHeight="100.0" prefWidth="100.0">
+                     <tooltip>
+       				     <Tooltip text="Validator Tool allows you to check your map for errors." />
+    				 </tooltip>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@magnifier.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button mnemonicParsing="false" onAction="#selectInspectorTool" prefHeight="100.0" prefWidth="100.0">
+                     <tooltip>
+       				     <Tooltip text="Inspector Tool allows you to display information about a block and its behavior." />
+    				 </tooltip>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@detective.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#selectAStarAlgorithmTool" prefHeight="100.0" prefWidth="100.0">
+                     <tooltip>
+                        <Tooltip text="A* Tool allows you to test the A* pathfinding algorithm on your map!" />
+                     </tooltip>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@web-development.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="7.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <Pane fx:id="canvasPane" prefHeight="123.0" prefWidth="820.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="1.0" left="10.0" right="10.0" top="8.0" />
+         </BorderPane.margin>
+         <children>
+            <Canvas fx:id="canvas" height="200.0" width="200.0" />
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
