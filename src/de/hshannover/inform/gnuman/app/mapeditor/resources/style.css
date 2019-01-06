@@ -1,0 +1,8 @@
+.slider .axis {
+	-fx-tick-label-fill: black;
+}
+
+.slider .axis .axis-tick-mark, .slider .axis .axis-minor-tick-mark {
+    -fx-fill: null;
+    -fx-stroke: black;
+}
