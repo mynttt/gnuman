@@ -84,7 +84,7 @@ public class GameVariableTracker {
 
     public void eatGhost() {
         addToScore(200*ghostsEatenInFrightenedMultiplier);
-        ghostsEatenInFrightenedMultiplier*=2;
+        if(ghostsEatenInFrightenedMultiplier <= 8) { ghostsEatenInFrightenedMultiplier*=2; }
         if(ghostsEatenInFrightenedMultiplier == 8) { ghostsEatenInFrightenedMultiplier++; }
     }
 
