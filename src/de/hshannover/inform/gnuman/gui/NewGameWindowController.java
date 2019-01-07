@@ -49,7 +49,7 @@ public class NewGameWindowController extends CommonController {
     private void startCustom() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open GNUMAN map");
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("Gnuman Map", "*.gnuman"));
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Gnuman Map", "*.gnuman"), new ExtensionFilter("All Files", "*.*"));
         File selectedFile = fileChooser.showOpenDialog(GameLauncher.getStage());
         if(selectedFile != null) {
             MapData map = null;
