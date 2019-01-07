@@ -84,8 +84,8 @@ public class GameVariableTracker {
 
     public void eatGhost() {
         addToScore(200*ghostsEatenInFrightenedMultiplier);
-        if(ghostsEatenInFrightenedMultiplier <= 8) { ghostsEatenInFrightenedMultiplier*=2; }
-        if(ghostsEatenInFrightenedMultiplier == 8) { ghostsEatenInFrightenedMultiplier++; }
+        if(ghostsEatenInFrightenedMultiplier < 8) { ghostsEatenInFrightenedMultiplier*=2; }
+        if(ghostsEatenInFrightenedMultiplier == 8) { fourGhostsEatenInOneFrighteningCycle++; }
     }
 
     public void resetLevelAfterLifeLoss() {
