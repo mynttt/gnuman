@@ -1,5 +1,6 @@
 package de.hshannover.inform.gnuman.gui.components;
 
+import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -121,12 +122,20 @@ public class TextTicker extends Pane {
     }
 
     /**
-     * Stop and reset the ticker.
+     * Stop and reset the ticker.<br>
      */
-    public void stop() {
+    public void pauseAndResetPosition() {
         if (timeline == null || !initiated) { return; }
-        pause();
+        timeline.pause();
         timeline.jumpTo(Duration.ZERO);
+    }
+    
+    /**
+     * @return true if currently not actively ticking a text.
+     */
+    public boolean isPaused() {
+        if(timeline == null || !initiated) { return true; }
+        return timeline.getStatus() == Status.PAUSED;
     }
 
     /**

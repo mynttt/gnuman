@@ -23,11 +23,14 @@ public class StartEditor {
         stage.getIcons().add(new Image(getClass().getResourceAsStream("resources/editor.png")));
         stage.setMinWidth(990);
         stage.setMinHeight(440);
-        stage.sizeToScene();
         stage.centerOnScreen();
         stage.setScene(editor);
         stage.setTitle("GNUMAN Editor :: Ready");
         stage.show();
+    //Hack to deal with margin issues if an OS makes the decorators a different size
+        stage.setHeight(stage.getHeight()+1);
+        stage.setWidth(stage.getWidth()+1);
+        stage.sizeToScene();
         editor.getStylesheets().add(getClass().getResource("resources/style.css").toExternalForm());
         editor.getRoot().applyCss();
         controller.setStage(stage);
