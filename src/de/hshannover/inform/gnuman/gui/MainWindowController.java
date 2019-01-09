@@ -27,6 +27,8 @@ public class MainWindowController extends CommonController {
     public void startTickerWhenSwitchToMainMenuAgain() {
         if(wisdom != null) { wisdomIndex = ++wisdomIndex % wisdom.length; ticker.updateText(wisdom[wisdomIndex]); ticker.play(); }
     }
+    
+    public boolean isTickerPaused() { return ticker.isPaused(); }
 
     /**
      * Parse the RMS wisdom.
@@ -47,7 +49,7 @@ public class MainWindowController extends CommonController {
      * @param state State to switch to.
      */
     private void switchFromMenu(UIStates state) {
-        if(wisdom != null) { ticker.stop(); }
+        if(wisdom != null) { ticker.pauseAndResetPosition(); }
         manager.switchScene(state);
     }
 

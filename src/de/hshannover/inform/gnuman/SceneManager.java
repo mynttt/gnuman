@@ -1,6 +1,8 @@
 package de.hshannover.inform.gnuman;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -29,6 +31,7 @@ import de.hshannover.inform.gnuman.gui.PauseWindowController;
  */
 
 public class SceneManager {
+    private UIStates current;
     private Stage rootStage = null;
     private Scene[] scenes;
     private CommonController[] controller;
@@ -96,6 +99,7 @@ public class SceneManager {
     public void callInitialScene(UIStates state) {
         Log.info(getClass().getSimpleName(), "Initial state set to: " + state);
         switchScene(state);
+        current = state;
         rootStage.setResizable(false);
         rootStage.sizeToScene();
         rootStage.show();
@@ -106,21 +110,43 @@ public class SceneManager {
      * @param state State to switch to.
      */
     public void switchScene(UIStates state) {
-
         /*
          * Hack to synchronize options with options object in case the game had to lower the block size.
          */
         if(state == UIStates.OPTIONS_GRAPHIC) { ((OptionsGraphicsController) getController(UIStates.OPTIONS_GRAPHIC)).updateOnVisit(); }
 
-        rootStage.setScene(scenes[state.ordinal()]);
-
-        /*
-         * Ugly hack to deal with the bugged first animation of the text ticker.
+        /**
+         * Start the ticker if we switch to main menu
          */
         if(state == UIStates.MAIN_MENU) {
-            if(mainMenuCalled) { ((MainWindowController) getController(UIStates.MAIN_MENU)).startTickerWhenSwitchToMainMenuAgain(); return; } mainMenuCalled = true;
+            /*
+             * Ugly hack, if we come from a scene where we used a canvas previously the immediate start of the timer will cause the
+             * content to be black. So we let the timer wait a bit and then start the ticker.
+             */
+            if(current == UIStates.LECTURE || current == UIStates.GAME_WINDOW) {
+                 new Timer().schedule(new TimerTask(){
+                     
+                     @Override
+                     public void run() {
+                         if(current == UIStates.MAIN_MENU && ((MainWindowController) getController(UIStates.MAIN_MENU)).isTickerPaused()) {
+                             startTicker(); 
+                         }
+                         this.cancel(); 
+                     }
+                     
+                 }, 1000, 1000);
+                 
+            } else {
+            /**
+             * These scenes do not use a canvas and thus are allowed to instantly start the timer.
+             */
+                startTicker();
+            }
         }
-
+        
+        rootStage.setScene(scenes[state.ordinal()]);
+        current = state;
+        
         Log.info(getClass().getSimpleName(), "UI_STATE -> " + state.toString());
     }
 
@@ -156,5 +182,12 @@ public class SceneManager {
         ((OptionsGraphicsController) getController(UIStates.OPTIONS_GRAPHIC)).triggerDimensionUpdate(Constants.DEFAULT_BLOCK_DIMENSIONS);
     //Oh no! Someone did not call it GNU/Linux...
         ((LectureController) getController(UIStates.LECTURE)).someoneCalledItLinuxInsteadOfGnuLinux();
+    }
+    
+    /*
+     * Ugly hack to deal with the bugged first animation of the text ticker.
+     */
+    private void startTicker() {
+         if(mainMenuCalled) { ((MainWindowController) getController(UIStates.MAIN_MENU)).startTickerWhenSwitchToMainMenuAgain(); } mainMenuCalled = true;
     }
 }
