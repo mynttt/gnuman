@@ -133,7 +133,7 @@ public class Entities {
     }
 
     /**
-     * Check player<=>ghost collision behavior
+     * Check player <=> ghost collision behavior
      * @return true if player gets killed by the collision
      */
     public boolean checkIfCollisionKillsPlayer() {

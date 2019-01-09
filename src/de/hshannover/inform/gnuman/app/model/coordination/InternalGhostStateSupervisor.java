@@ -34,6 +34,7 @@ public class InternalGhostStateSupervisor {
     /**
      * Load settings for level
      * @param level to load for
+     * @param diff difficulty to load for
      */
     public void loadLevel(int level, Difficulty diff) {
         timed.clearTasks();

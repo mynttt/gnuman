@@ -35,6 +35,7 @@ public class GhostFrighteningRules {
 
     /**
      * @param level current level
+     * @param difficulty difficulty to use for frightening time
      * @return time in ms
      */
     public static int getFrighteningTimeInMs(int level, Difficulty difficulty) {

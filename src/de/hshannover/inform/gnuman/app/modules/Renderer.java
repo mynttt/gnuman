@@ -45,6 +45,8 @@ public class Renderer {
      * @param gc context of canvas.
      * @param textures texture manager.
      * @param dyn Dynamic user options depending values.
+     * @param dynamicCamera if we use a dynamic camera
+     * @param player for the dynamic camera (can be null if no dynamic camera)
      */
     public Renderer(GraphicsContext gc, Textures textures, DynamicVariables dyn, boolean dynamicCamera, Player player) {
         this.dyn = dyn;

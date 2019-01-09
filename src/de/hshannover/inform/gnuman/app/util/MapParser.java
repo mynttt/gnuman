@@ -36,6 +36,7 @@ public class MapParser {
      * Construct a map parser.
      * @param location of map
      * @param internalMap if inside jar
+     * @return parsing reply containing success and data
      * @throws Exception if we fail to load anything.
      */
     public static ParsingReply parseMap(String location, boolean internalMap) throws Exception {
@@ -50,6 +51,7 @@ public class MapParser {
 
     /**
      * Validate data and return a status code.
+     * @param data to validate
      * @return <pre> 0 if no errors.
      * -1 if errors with metadata
      * -2 if errors with scatter points
@@ -61,7 +63,7 @@ public class MapParser {
      * -8 illegal horizontal teleporter
      * -9 illegal vertical teleporter
      * -10 mapdata is null
-     * <pre>
+     * </pre>
      */
     public static ParsingStatus validate(MapData data) {
         ParsingStatus s = new ParsingStatus(0, 0, 0);
@@ -191,6 +193,8 @@ public class MapParser {
 
     /**
      * Internal parsing operation
+     * @param reader to use
+     * @param data to write into
      * @throws Exception if we fail to parse anything.
      */
     private static void internalParsing(BufferedReader reader, MapData data) throws Exception {

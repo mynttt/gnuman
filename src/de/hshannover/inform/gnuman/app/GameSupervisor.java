@@ -185,6 +185,7 @@ public class GameSupervisor {
 
     /**
      * Evaluate if we made a new record or get the "you tried XD" screen.
+     * @return true if made highscore
      */
     public boolean madeHighscore() {
         return controller.madeHighscore(gameInstance.getDifficulty(), gameInstance.getScore());

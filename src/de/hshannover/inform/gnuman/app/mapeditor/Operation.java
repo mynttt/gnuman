@@ -8,5 +8,10 @@ import de.hshannover.inform.gnuman.app.model.storage.MapData;
  */
 
 interface Operation {
+
+    /**
+     * Call the operation with the map data that is to be manipulated.
+     * @param toManipulate
+     */
     void execute(MapData toManipulate);
 }
