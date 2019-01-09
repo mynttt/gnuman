@@ -15,6 +15,7 @@ public class AStarPathfinding {
 
     /**
      * Construct with already preset nodes.
+     * @param nodes to use
      */
     public AStarPathfinding(PathNode[][] nodes) {
         this.width = nodes[0].length;

@@ -157,6 +157,7 @@ public abstract class AbstractEntity extends GameObject {
 
     /**
      * Modify speed according to game rules.
+     * @param speedFactor modifier type
      */
     protected void computeSpeed(SpeedTypes speedFactor) {
         setSpeed(dyn.getBaseSpeed() * EntitySpeedRules.getSpeedMultiplier(speedFactor, tracker.getLevel()));

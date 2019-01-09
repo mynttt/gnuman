@@ -89,6 +89,7 @@ public class GhostStateRules {
     /**
      * Create a behavior for the current level.
      * @param level to generate for.
+     * @param diff difficulty to use when creating the behavior
      * @return object to handle the ghost states.
      */
     public GhostStateBehavior createBehaviorForLevel(int level, Difficulty diff) {

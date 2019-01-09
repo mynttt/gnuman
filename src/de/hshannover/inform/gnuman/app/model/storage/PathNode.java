@@ -85,7 +85,7 @@ public class PathNode {
     }
 
     /**
-     * Returns the G-Variable of the selected node.
+     * @return the G-Variable of the selected node.
      */
     public int getG() {
         return g;
@@ -94,6 +94,7 @@ public class PathNode {
     /**
      * Returns the G-Variable of a this Node using another Nodes prior value to build on but doesn't set it.
      * @param parentG parent node of g node to preview
+     * @return preview g variable without setting it
      */
     public int previewG(PathNode parentG) {
         return parentG.getG() + 1;

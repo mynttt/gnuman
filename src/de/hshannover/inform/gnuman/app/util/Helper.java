@@ -85,6 +85,7 @@ public class Helper {
      * @param y y-Coordinate to place.
      * @param width width of object.
      * @param height height of object.
+     * @param dyn dynamic variable object.
      * @return A point containing the two interpolated values.
      */
     public static Point interpolate(int x, int y, int width, int height, DynamicVariables dyn) {
@@ -123,7 +124,7 @@ public class Helper {
      * @param coordinates coordinates of block
      * @param mapData data of map
      * @param blockWidth width of block
-     * @parm blockHeight height of block
+     * @param blockHeight height of block
      * @return 1 if horizontal, 0 if impossible to determine, -1 if vertical
      */
     public static int evaluateAlignment(Point coordinates, StaticObjects[][] mapData, int blockWidth, int blockHeight) {
@@ -152,6 +153,7 @@ public class Helper {
      * @param targetWidth of the image
      * @param targetHeight target height of the image
      * @param preserveRatio true if preserve ratio
+     * @param smooth true if apply AA to the image
      * @return scaled image
      */
     public static Image scale(Image source, int targetWidth, int targetHeight, boolean preserveRatio, boolean smooth) {

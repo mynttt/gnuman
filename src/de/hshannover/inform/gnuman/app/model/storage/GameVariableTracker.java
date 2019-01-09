@@ -13,7 +13,7 @@ import de.hshannover.inform.gnuman.app.rules.GeneralRules;
 
 public class GameVariableTracker {
     private int score, lifes, level, pacDotsEaten, ghostsEatenInFrightenedMultiplier, fourGhostsEatenInOneFrighteningCycle, allPacDots, givenExtraLifes, extraLifeScore;
-    private boolean frightened, elroyAfterLifeLost, elroy, allFourGhostsEaten;
+    private boolean frightened, elroyAfterLifeLost, elroy;
     private long frightenedExpiresAt, frightenedFlashAt, frightenedDuration;
     private Difficulty difficulty;
 
@@ -43,7 +43,7 @@ public class GameVariableTracker {
     public void enableElroy() { elroy = true; }
     public void removeLife() { lifes--; }
     public void incrementPacDots() { pacDotsEaten++; }
-    public void disableFrightening() { frightened = false; allFourGhostsEaten = false; }
+    public void disableFrightening() { frightened = false; }
     public void adjustDeltaTime(long timeDelta) { frightenedExpiresAt += timeDelta; frightenedFlashAt += timeDelta; }
 
     public void addToScore(int points) {
@@ -85,7 +85,9 @@ public class GameVariableTracker {
     public void eatGhost() {
         addToScore(200*ghostsEatenInFrightenedMultiplier);
         if(ghostsEatenInFrightenedMultiplier < 8) { ghostsEatenInFrightenedMultiplier*=2; }
-        if(ghostsEatenInFrightenedMultiplier == 8 && !allFourGhostsEaten) { fourGhostsEatenInOneFrighteningCycle++; allFourGhostsEaten = true; }
+        if(ghostsEatenInFrightenedMultiplier == 8) { fourGhostsEatenInOneFrighteningCycle++; }
+        System.out.println(ghostsEatenInFrightenedMultiplier);
+        System.out.println(fourGhostsEatenInOneFrighteningCycle);
     }
 
     public void resetLevelAfterLifeLoss() {
@@ -103,7 +105,7 @@ public class GameVariableTracker {
         ghostsEatenInFrightenedMultiplier = 1;
         fourGhostsEatenInOneFrighteningCycle = 0;
         pacDotsEaten = 0;
-        frightened = elroyAfterLifeLost = elroy = allFourGhostsEaten = false;
+        frightened = elroyAfterLifeLost = elroy = false;
     }
 
 }

@@ -136,6 +136,8 @@ public class EntityAnimation {
     }
 
     /**
+     * @param object to lookup for
+     * @param direction to lookup for
      * @return image for animations outside of the game.
      */
     public Image forAnimationWithoutObject(EntityObjects object, Directions direction) {

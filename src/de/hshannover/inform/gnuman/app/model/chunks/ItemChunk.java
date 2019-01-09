@@ -26,7 +26,7 @@ public class ItemChunk {
         currentlyExistingItems = new HashMap<>();
         this.blockdimension = blockdimension;
         this.c = c;
-        for(int y = fromY == 0 ? -1 : fromY; y <= fromY+dimension; y++) {
+        for(int y = fromY; y <= fromY+dimension; y++) {
             allExistingItems.put(y, new HashMap<>());
             currentlyExistingItems.put(y, new HashMap<>());
         }

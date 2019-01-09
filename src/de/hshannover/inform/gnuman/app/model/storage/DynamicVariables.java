@@ -66,6 +66,7 @@ public class DynamicVariables {
 
     /**
      * Calculation once a session started.
+     * @param dynamicCamera if a dynamic camera shall be used
      */
     private void calculateOnce(boolean dynamicCamera) {
         int blockDimension = (int) Math.round(((blockWidth + blockHeight) / 2));

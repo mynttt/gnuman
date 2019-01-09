@@ -58,7 +58,7 @@ public class ChunkCoordinator {
     /**
      * Find correct chunk and return collision query.
      * @param e entity to check for.
-     * @return
+     * @return object at the chunk
      */
     public StaticObjects checkForCollision(AbstractEntity e) {
         return chunks.get(e.floorCellY() / dimension).get(e.floorCellX() / dimension).checkForCollision(e);

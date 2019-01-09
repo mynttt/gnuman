@@ -105,6 +105,7 @@ public class Player extends AbstractEntity {
     /**
      * Check if in the middle of an intersection the buffered direction is a legal move.
      * @param horizontal if we're horizontal
+     * @return if the next move is possible without collision
      */
     private boolean isNextMovePossible(boolean horizontal) {
         int nextXCell = clampCellX() + (horizontal ? 0 : ((bufferDirection == Directions.LEFT) ? -1 : 1));

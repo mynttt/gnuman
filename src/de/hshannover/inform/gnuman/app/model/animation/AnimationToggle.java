@@ -19,6 +19,8 @@ public class AnimationToggle {
 
     /**
      * Construct an AnimationToggle with a custom defined cycle.
+     * @param onTill while less then this number of frames the animation will be turned on
+     * @param offTill while less then this  number of frames the animation will be turned off
      */
     public AnimationToggle(int onTill, int offTill) {
         animationOnTill = onTill;
