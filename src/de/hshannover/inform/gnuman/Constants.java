@@ -117,7 +117,7 @@ public final class Constants {
     /*
      * Highscore related
      */
-    public final static String HIGHSCORE_LOCATION = "highscore.txt";
+    public final static String HIGHSCORE_LOCATION = ".gnuman_highscore";
     public final static String HIGHSCORE_BOX_CSS_ID = "highscore-vbox";
     public final static String HIGHSCORE_HEADLINE_CSS_ID = "highscore-top";
     public final static String HIGHSCORE_RESULT_CSS_ID = "highscore-result";
