@@ -39,7 +39,7 @@
                <children>
                   <ImageView fx:id="pinky" fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
                   <Text id="help-large" fill="WHITE" layoutX="242.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Facebook (Pinky)" />
-                  <Text id="help-small" fill="WHITE" layoutX="230.0" layoutY="94.0" lineSpacing="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powered by one of the largest sets of data worldwide and with the help&#10;of Cambridge Analytica this megacorp lead by a robot.. ahhm.. the Zucc will always attempt to catch you off guard. These ambushes happen faster than Zucc can say &quot;We respect your privacy!&quot; in front of the EU parliament.&#10;&#10;This ghost will always try to ambush you if possible, the scatter corner is the top left one." textAlignment="CENTER" wrappingWidth="580.0" />
+                  <Text id="help-small" fill="WHITE" layoutX="230.0" layoutY="94.0" lineSpacing="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powered by one of the largest sets of data worldwide and with the help&#10;of Cambridge Analytica this megacorp lead by a lizard.. ahhm.. the Zucc will always attempt to catch you off guard. These ambushes happen faster than Zucc can say &quot;We respect your privacy!&quot; in front of the EU parliament.&#10;&#10;This ghost will always try to ambush you if possible, the scatter corner is the top left one." textAlignment="CENTER" wrappingWidth="580.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="290.0" prefWidth="800.0" visible="false">
