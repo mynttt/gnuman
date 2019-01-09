@@ -866,7 +866,7 @@ public class EditorController {
                 } else {
                     cells.add(new Point(x, isFirst ? yHigh : 0));
                     blocks.add(currentMap.getData()[isFirst ? yHigh : 0][x]);
-                    currentMap.setMapData(StaticObjects.WALL, isFirst ? yHigh : 0, x);
+                    currentMap.setMapData(StaticObjects.WALL, isFirst ? x : 0, yHigh);
                 }
                 fixed++;
             }
