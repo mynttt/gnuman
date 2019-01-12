@@ -29,13 +29,13 @@ public class HighscoreWindowController extends CommonController {
      */
     public void resetToFirstValue() {
         highscore.setState(Difficulty.values()[0]);
-        showNextLevel.setText("SHOW " + Difficulty.values()[0].toString());
+        categoryCounter = 0;
+        showNextLevel.setText("SHOW " + Difficulty.values()[1].toString());
     }
 
     @FXML
     private void initialize() {
         highscore = new Highscore(Constants.HIGHSCORE_MAX_PLAYERS_TO_DISPLAY, Difficulty.SLOW);
-        categoryCounter = 0;
         showNextLevel.setText("SHOW " + Difficulty.values()[categoryCounter+1%Difficulty.values().length].toString());
         highscoreBox.setAlignment(Pos.CENTER);
         highscoreBox.getChildren().add(highscore.getBox());

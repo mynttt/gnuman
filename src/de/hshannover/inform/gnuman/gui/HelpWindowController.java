@@ -30,7 +30,7 @@ public class HelpWindowController extends CommonController {
 
     @FXML
     private void initialize() {
-        toggle.setText((toggleIndex+1)+"/"+togglePane.getChildren().size());
+        toggle.setText((toggleIndex+1)+"/"+togglePane.getChildren().size() + " Pages");
         try {
             animation = Textures.createEntityAnimation(60, 264, 264);
         } catch(Exception e) {
@@ -65,7 +65,7 @@ public class HelpWindowController extends CommonController {
         animationLoop.stop();
         togglePane.getChildren().forEach(n -> n.setVisible(false));
         toggleIndex = 0;
-        toggle.setText((toggleIndex+1)+"/"+togglePane.getChildren().size());
+        toggle.setText((toggleIndex+1)+"/"+togglePane.getChildren().size() + " Pages");
         togglePane.getChildren().get(0).setVisible(true);
     }
 
@@ -75,6 +75,6 @@ public class HelpWindowController extends CommonController {
         toggleIndex = ++toggleIndex%togglePane.getChildren().size();
         togglePane.getChildren().get(disable).setVisible(false);
         togglePane.getChildren().get(toggleIndex).setVisible(true);
-        toggle.setText((toggleIndex+1)+"/"+togglePane.getChildren().size());
+        toggle.setText((toggleIndex+1)+"/"+togglePane.getChildren().size() + " Pages");
     }
 }

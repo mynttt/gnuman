@@ -8,8 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="background-rms" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="875.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hshannover.inform.gnuman.gui.OptionsAudioController">
+<AnchorPane id="background-rms" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="875.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="de.hshannover.inform.gnuman.gui.OptionsAudioController">
    <children>
+      <Label id="options-label" fx:id="baseLevelString" layoutX="283.0" layoutY="234.0" text="Audio Base Level @ 100%" />
       <VBox layoutX="288.0" layoutY="251.0" prefHeight="335.0" prefWidth="300.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -19,8 +20,7 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Slider fx:id="audioBaseLevelSlider" blockIncrement="5.0" layoutY="35.0" max="300.0" min="25.0" minorTickCount="5" prefHeight="32.0" prefWidth="281.0" showTickLabels="true" showTickMarks="true" />
-                        <Label id="options-label" layoutX="22.0" layoutY="-11.0" text="Audio Base Level" />
+                        <Slider fx:id="audioBaseLevelSlider" blockIncrement="5.0" layoutY="35.0" max="300.0" min="25.0" minorTickCount="5" prefHeight="32.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
                      </children>
                   </AnchorPane>
                </children>

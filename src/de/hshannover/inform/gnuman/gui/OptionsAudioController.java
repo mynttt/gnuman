@@ -2,6 +2,7 @@ package de.hshannover.inform.gnuman.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import de.hshannover.inform.gnuman.Constants;
 import de.hshannover.inform.gnuman.app.AudioManager;
@@ -13,6 +14,7 @@ import de.hshannover.inform.gnuman.app.enums.UIStates;
  */
 
 public class OptionsAudioController extends CommonController {
+    @FXML Label baseLevelString;
     @FXML Button soundButton, musicButton;
     @FXML Slider audioBaseLevelSlider;
 
@@ -34,7 +36,9 @@ public class OptionsAudioController extends CommonController {
         audioBaseLevelSlider.valueProperty().addListener(e -> {
             audioBaseLevelSlider.setValue(Math.round(audioBaseLevelSlider.getValue()));
             gameOptions.setBaseLevelMultiplicator(audioBaseLevelSlider.getValue()/100);
+            baseLevelString.setText(String.format("Audio Base Level @ %d%%", (int) audioBaseLevelSlider.getValue()));
             AudioManager.adjustAll(gameOptions.getBaseLevelMultiplicator());
+
         });
     }
 
