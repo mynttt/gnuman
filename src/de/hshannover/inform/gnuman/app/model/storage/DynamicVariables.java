@@ -109,9 +109,9 @@ public class DynamicVariables {
      */
     private void calculateBaseSpeed() {
         if(Constants.DEBUG_DISABLE_SPEED_ADJUSTMENT) {
-            gameBaseSpeed = difficulty.getSpeedMultiplicator()* Constants.GAME_MOVEMENT_SPEED_TO_BLOCK_RATIO * ((blockHeight + blockWidth) / 2.0);
+            gameBaseSpeed = difficulty.getSpeedScale()* Constants.GAME_MOVEMENT_SPEED_TO_BLOCK_RATIO * ((blockHeight + blockWidth) / 2.0);
         } else {
-            gameBaseSpeed = difficulty.getSpeedMultiplicator() * Constants.GAME_MOVEMENT_SPEED_TO_BLOCK_RATIO  * ((blockHeight + blockWidth) / 2.0) * 60.0/targetedFps;
+            gameBaseSpeed = difficulty.getSpeedScale() * Constants.GAME_MOVEMENT_SPEED_TO_BLOCK_RATIO  * ((blockHeight + blockWidth) / 2.0) * 60.0/targetedFps;
         }
     }
 
