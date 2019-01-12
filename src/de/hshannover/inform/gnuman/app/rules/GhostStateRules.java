@@ -65,7 +65,7 @@ public class GhostStateRules {
 
         public GhostStateBehavior(long[] lengthOfModes, Difficulty diff) {
             this.lengthOfModesInMs = lengthOfModes;
-            this.difficultyScale = (GeneralRules.SCALE_RULE_TIMERS_WITH_SPEED) ? diff.getSpeedMultiplicator() : 1;
+            this.difficultyScale = diff.getTimingScale();
         }
 
         public void nextState() {

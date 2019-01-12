@@ -39,7 +39,7 @@ public class GhostFrighteningRules {
      * @return time in ms
      */
     public static int getFrighteningTimeInMs(int level, Difficulty difficulty) {
-        if(level <= 18) { return (int) (GeneralRules.SCALE_RULE_TIMERS_WITH_SPEED ? difficulty.getSpeedMultiplicator() : 1) * FRIGHTENED_TIME.get(level); }
+        if(level <= 18) { return (int) (difficulty.getTimingScale() * FRIGHTENED_TIME.get(level)); }
         return 0;
     }
 }

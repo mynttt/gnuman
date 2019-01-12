@@ -230,7 +230,7 @@ public class GameInstance {
      //Bonus Item
         if(tracker.canSpawnBonusItem() && map.bonusItemExists() && !map.bonusItemSpawned()) {
             map.spawnBonusItem();
-            timedTasks.createOrOverrideTask("bonus-item", (long) (9750*tracker.getDifficulty().getSpeedMultiplicator()));
+            timedTasks.createOrOverrideTask("bonus-item", (long) (9750*tracker.getDifficulty().getTimingScale()));
             createItemTask();
         }
     }
