@@ -400,9 +400,9 @@ public class Dialogs {
         alert.showAndWait();
     }
 
-    private static void openUrl(String url) {
+    public static void openUrl(String url) {
         try {
-            Desktop.getDesktop().browse(new URL("https://www.flaticon.com/authors/darius-dan").toURI());
+            Desktop.getDesktop().browse(new URL(url).toURI());
         } catch (IOException | URISyntaxException e) {
             dialog(AlertType.ERROR, "Failed to open credit URL.", "URL was: " + url);
         }

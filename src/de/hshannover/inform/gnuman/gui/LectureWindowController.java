@@ -14,7 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class LectureController extends CommonController {
+public class LectureWindowController extends CommonController {
     @FXML BorderPane rootPane;
     Canvas c;
     GraphicsContext g;

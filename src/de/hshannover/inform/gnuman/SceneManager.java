@@ -16,7 +16,7 @@ import de.hshannover.inform.gnuman.app.model.storage.GameSettings;
 import de.hshannover.inform.gnuman.app.util.Helper;
 import de.hshannover.inform.gnuman.gui.AddHighscoreController;
 import de.hshannover.inform.gnuman.gui.CommonController;
-import de.hshannover.inform.gnuman.gui.LectureController;
+import de.hshannover.inform.gnuman.gui.LectureWindowController;
 import de.hshannover.inform.gnuman.gui.GameWindowController;
 import de.hshannover.inform.gnuman.gui.MainWindowController;
 import de.hshannover.inform.gnuman.gui.OptionsGraphicsController;
@@ -181,7 +181,7 @@ public class SceneManager {
     //Check default blocksize against the default map, update to largest possible blocksize.
         ((OptionsGraphicsController) getController(UIStates.OPTIONS_GRAPHIC)).triggerDimensionUpdate(Constants.DEFAULT_BLOCK_DIMENSIONS);
     //Oh no! Someone did not call it GNU/Linux...
-        ((LectureController) getController(UIStates.LECTURE)).someoneCalledItLinuxInsteadOfGnuLinux();
+        ((LectureWindowController) getController(UIStates.LECTURE)).someoneCalledItLinuxInsteadOfGnuLinux();
     }
     
     /*
