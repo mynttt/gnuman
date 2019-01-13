@@ -24,13 +24,15 @@ public class Inky extends AbstractGhost {
     }
 
     @Override
-    protected void decideChaseBehavior(Player player) {
+    protected MapCell decideChaseBehavior(Player player) {
         Directions d = player.getDirection();
-        int xPlayerOffset, yPlayerOffset;
+        int initialOffsetX, initialOffsetY, blinkyToOffsetX, blinkyToOffsetY;
     //X Calculation will take the original games offset bug into consideration!
-        xPlayerOffset = player.clampCellX() + ((d == Directions.LEFT || d == Directions.RIGHT || d == Directions.UP) ? (d == Directions.RIGHT && d != Directions.UP ? 2 : -2) : 0);
-        yPlayerOffset = player.clampCellY() + ((d == Directions.DOWN || d == Directions.UP) ? (d == Directions.DOWN ? 2 : -2) : 0);
-        targetedPathTile = new MapCell(xPlayerOffset - coordinator.getBlinkyX(), yPlayerOffset - coordinator.getBlinkyY());
+        initialOffsetX = player.clampCellX() + ((d == Directions.LEFT || d == Directions.RIGHT || d == Directions.UP) ? (d == Directions.RIGHT && d != Directions.UP ? 2 : -2) : 0);
+        initialOffsetY = player.clampCellY() + ((d == Directions.DOWN || d == Directions.UP) ? (d == Directions.DOWN ? 2 : -2) : 0);
+        blinkyToOffsetX = (initialOffsetX - coordinator.getBlinkyX())*2;
+        blinkyToOffsetY = (initialOffsetY - coordinator.getBlinkyY())*2;
+        return new MapCell(coordinator.getBlinkyX() + blinkyToOffsetX, coordinator.getBlinkyY()+blinkyToOffsetY);
     }
 
 }

@@ -23,13 +23,13 @@ public class Pinky extends AbstractGhost {
     }
 
     @Override
-    protected void decideChaseBehavior(Player player) {
+    protected MapCell decideChaseBehavior(Player player) {
         Directions d = player.getDirection();
         int xPlayerOffset, yPlayerOffset;
     //X Calculation will take the original games offset bug into consideration!
         xPlayerOffset = (d == Directions.LEFT || d == Directions.RIGHT || d == Directions.UP) ? (d == Directions.RIGHT && d != Directions.UP ? 4 : -4) : 0;
         yPlayerOffset = (d == Directions.DOWN || d == Directions.UP) ? (d == Directions.DOWN ? 4 : -4) : 0;
-        targetedPathTile = new MapCell(player.clampCellX() + xPlayerOffset, player.clampCellY() + yPlayerOffset);
+        return new MapCell(player.clampCellX() + xPlayerOffset, player.clampCellY() + yPlayerOffset);
     }
 
 }

@@ -73,17 +73,23 @@ public abstract class AbstractEntity extends GameObject {
         return entityType;
     }
 
+    /**
+     * @return center x, only for collision chunk lookup
+     */
     public int centerCellX() {
         return (int) Math.round((this.getX()+getWidth()) / dyn.getBlockWidth()) - 1;
     }
 
+    /**
+     * @return center y, only for collision chunk lookup
+     */
     public int centerCellY() {
         return (int) Math.round((this.getY()+getHeight()) / dyn.getBlockHeight()) - 1;
     }
 
     /**
      * This is out of bounds safe.
-     * @return current rounded x-cell of the map.
+     * @return current floored x-cell of the map.
      */
     public int floorCellX() {
         return (int) Math.floor(this.getX() / dyn.getBlockWidth());
@@ -91,7 +97,7 @@ public abstract class AbstractEntity extends GameObject {
 
     /**
      * This is out of bounds safe.
-     * @return current rounded y-cell of the map.
+     * @return current floored y-cell of the map.
      */
     public int floorCellY() {
         return (int) Math.floor(this.getY() / dyn.getBlockHeight());

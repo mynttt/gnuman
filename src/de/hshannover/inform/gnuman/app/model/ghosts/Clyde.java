@@ -24,12 +24,11 @@ public class Clyde extends AbstractGhost {
     }
 
     @Override
-    protected void decideChaseBehavior(Player player) {
+    protected MapCell decideChaseBehavior(Player player) {
         if(Helper.euclideanDistance(clampCellX(), clampCellY(), player.clampCellX(), player.clampCellY()) < 9.0) {
-            targetedPathTile = coordinator.getScatterPoint(getEntityType());
-            return;
+            return coordinator.getScatterPoint(getEntityType());
         }
-        targetedPathTile = new MapCell(player.clampCellX(), player.clampCellY());
+        return new MapCell(player.clampCellX(), player.clampCellY());
     }
 
 }

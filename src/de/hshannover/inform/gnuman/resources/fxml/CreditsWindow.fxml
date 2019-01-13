@@ -14,17 +14,25 @@
 
 <AnchorPane id="background-rms" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="875.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="de.hshannover.inform.gnuman.gui.CreditsWindowController">
    <children>
-      <ImageView fx:id="github" fitHeight="32.0" fitWidth="32.0" layoutX="769.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../css/github.png" />
-         </image>
-      </ImageView>
-      <Label id="text-ticker-text" layoutX="811.0" layoutY="550.0" text="|" textFill="WHITE" />
-      <ImageView fx:id="gitlab" fitHeight="32.0" fitWidth="32.0" layoutX="829.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../css/gitlab.png" />
-         </image>
-      </ImageView>
+      <Button id="credits-hover" layoutX="767.0" layoutY="551.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#github" prefHeight="36.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/github.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label id="text-ticker-text" layoutX="810.0" layoutY="551.0" text="|" textFill="WHITE" />
+      <Button id="credits-hover" layoutX="825.0" layoutY="551.0" minHeight="36.0" minWidth="36.0" mnemonicParsing="false" onAction="#gitlab" prefHeight="36.0" prefWidth="36.0">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/gitlab.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
       <AnchorPane fx:id="trigger" layoutY="314.0" prefHeight="290.0" prefWidth="281.0" />
       <GridPane layoutX="164.0" layoutY="249.0" prefHeight="259.0" prefWidth="562.0">
         <columnConstraints>

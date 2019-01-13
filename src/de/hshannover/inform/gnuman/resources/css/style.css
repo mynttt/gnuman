@@ -163,6 +163,15 @@
 	-fx-font-size: 28px;
 }
 
+#credits-hover{
+	-fx-background-color: transparent;
+}
+
+#credits-hover:hover {
+	-fx-cursor: hand;
+	-fx-effect: dropshadow(three-pass-box, rgba(255,40,145,1), 25, 0, 0, 0);
+}
+
 .text-field {
     -fx-border-color: #FF2A99;
     -fx-border-radius: 40,40,40,40;
