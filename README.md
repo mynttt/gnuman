@@ -14,7 +14,7 @@ While I do agree with lots of RMSs standpoints it should be noted that I'm neith
 
 I tried to emulate Pacman as good as I could. I hope you can enjoy this game =)
 
-# [Get the .jar here!](https://github.com/mynttt/gnuman/releases/tag/1.0.5)
+# [Get the .jar here!](https://github.com/mynttt/gnuman/releases/tag/1.0.6)
 
 # Screenshots
 
