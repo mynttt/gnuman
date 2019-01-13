@@ -241,6 +241,7 @@ public abstract class AbstractGhost extends AbstractEntity {
                 AudioManager.playSound(AudioFiles.EATING_GHOST);
                 tracker.eatGhost();
                 behaviorState = GhostBehaviorState.DEAD;
+                stateSupervisor.pause();
                 died = true;
                 computeSpeed(SpeedTypes.GHOST_NORMAL);
                 if(isInsideMap()) {
@@ -586,7 +587,7 @@ public abstract class AbstractGhost extends AbstractEntity {
         sb.append(stateSupervisor.isPaused());
         sb.append("\nMovement Flag: ");
         sb.append(movementFlag);
-        if(died) { sb.append("I am dead."); }
+        if(died) { sb.append("\nI am dead."); }
         return sb.toString();
     }
 }

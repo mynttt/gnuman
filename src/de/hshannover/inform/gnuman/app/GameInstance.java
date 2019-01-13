@@ -228,7 +228,7 @@ public class GameInstance {
      //Clear audio if not used
         if(System.currentTimeMillis() > lastDotEaten || tracker.isFrightened()) { AudioFiles.EATING_DOTS.getAudioFile().stop(); }
      //Bonus Item
-        if(tracker.canSpawnBonusItem() && map.bonusItemExists() && !map.bonusItemSpawned()) {
+        if(tracker.canSpawnBonusItem() && map.bonusItemSpawnable()) {
             map.spawnBonusItem();
             timedTasks.createOrOverrideTask("bonus-item", (long) (9750*tracker.getDifficulty().getTimingScale()));
             createItemTask();

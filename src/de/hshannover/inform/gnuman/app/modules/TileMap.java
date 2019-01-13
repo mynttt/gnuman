@@ -33,7 +33,7 @@ public class TileMap {
     private ChunkCoordinator c;
     private Static bonusItem;
     private boolean bonusItemSpawned;
-    private int pacDots;
+    private int pacDots, timesBonusItemSpawned;
 
     /**
      * Construct a tile map.
@@ -74,6 +74,7 @@ public class TileMap {
             c.reset();
             bonusItemSpawned = false;
             bonusItem = null;
+            timesBonusItemSpawned = 0;
         }
         Log.info(getClass().getSimpleName(), "Reset map to initial state.");
     }
@@ -109,6 +110,7 @@ public class TileMap {
         Collections.shuffle(bonusItemSpawns);
         bonusItem = new Static(bonusItemSpawns.get(0).getX(), bonusItemSpawns.get(0).getY(), dyn.getItemWidth(), dyn.getItemHeight(), StaticObjects.BONUS_ITEM);
         bonusItemSpawned = true;
+        timesBonusItemSpawned++;
     }
 
     /**
@@ -230,8 +232,8 @@ public class TileMap {
         return bonusItemSpawned;
     }
 
-    public boolean bonusItemExists() {
-        return bonusItemSpawns.size() > 0;
+    public boolean bonusItemSpawnable() {
+        return bonusItemSpawns.size() > 0 && timesBonusItemSpawned < 2 && !bonusItemSpawned;
     }
 
     public Static getBonusItem() {
