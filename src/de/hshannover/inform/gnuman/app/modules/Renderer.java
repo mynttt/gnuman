@@ -63,7 +63,7 @@ public class Renderer {
         }
 
         if(Constants.DEBUG_RENDERER) {
-            instruction = new DebugRenderer(gc, dyn);
+            instruction = new DebugRenderer(gc, dyn, gameFont);
         } else {
             instruction = dynamicCamera ? new DynamicCameraRenderer(gc, dyn, textures, animation, player) : new StaticCameraRenderer(gc, dyn, textures, animation);
         }
@@ -74,16 +74,16 @@ public class Renderer {
             public void renderNextFrame() {
                 double speed = dyn.getBaseSpeed()*0.75;
                 animation.update(false);
-                if(reset) { gplX = -dyn.getEntitySpriteWidth()*7; playerX = -dyn.getEntitySpriteWidth()*6; ghostX = -dyn.getEntitySpriteWidth(); reset = false; }
+                if(reset) { gplX = -dyn.getHighscoreEntitySize()*7; playerX = -dyn.getHighscoreEntitySize()*6; ghostX = -dyn.getHighscoreEntitySize(); reset = false; }
                 gplX+=speed; playerX+=speed; ghostX+=speed;
 
                 for(EntityObjects o : EntityObjects.ghosts()) {
-                    gc.drawImage(animation.forAnimationWithoutObject(o, Directions.RIGHT), ghostX, (7+o.ordinal()*2)*dyn.getEntitySpriteHeight());
+                    gc.drawImage(animation.forAnimationWithoutObject(o, Directions.RIGHT), ghostX, (7+o.ordinal()*2)*dyn.getHighscoreEntitySize(), dyn.getHighscoreEntitySize(), dyn.getHighscoreEntitySize());
                 }
-                gc.drawImage(animation.forAnimationWithoutObject(EntityObjects.PLAYER, Directions.RIGHT), playerX, 14*dyn.getEntitySpriteHeight()-dyn.getEntitySpriteHeight()*0.25, dyn.getEntitySpriteWidth()*1.25, dyn.getEntitySpriteHeight()*1.25);
-                gc.drawImage(textures.getTexture(ObjectTypes.OTHER, OtherObjects.GPL), gplX, 10*dyn.getEntitySpriteHeight());
+                gc.drawImage(animation.forAnimationWithoutObject(EntityObjects.PLAYER, Directions.RIGHT), playerX, 14*dyn.getHighscoreEntitySize()-dyn.getHighscoreEntitySize()*0.25, dyn.getHighscoreEntitySize()*1.25, dyn.getHighscoreEntitySize()*1.25);
+                gc.drawImage(textures.getTexture(ObjectTypes.OTHER, OtherObjects.GPL), gplX, 10*dyn.getHighscoreEntitySize());
 
-                if(gplX > dyn.getGameAreaWidth()+dyn.getEntitySpriteWidth()) { reset = true; }
+                if(gplX > dyn.getGameAreaWidth()+dyn.getHighscoreEntitySize()) { reset = true; }
             }
         };
 
@@ -97,7 +97,7 @@ public class Renderer {
                 gplX+=speed; playerX+=speed; ghostX+=speed;
 
                 for(EntityObjects o : EntityObjects.ghosts()) {
-                    gc.drawImage(animation.forAnimationWithoutObject(o, Directions.RIGHT), ghostX, (9+o.ordinal()*2)*dyn.getHighscoreEntitySize());
+                    gc.drawImage(animation.forAnimationWithoutObject(o, Directions.RIGHT), ghostX, (9+o.ordinal()*2)*dyn.getHighscoreEntitySize(), dyn.getHighscoreEntitySize(), dyn.getHighscoreEntitySize());
                 }
                 gc.drawImage(animation.forAnimationWithoutObject(EntityObjects.PLAYER, Directions.RIGHT), playerX, 16*dyn.getHighscoreEntitySize()-dyn.getHighscoreEntitySize()*0.25, dyn.getHighscoreEntitySize()*1.25, dyn.getHighscoreEntitySize()*1.25);
                 gc.drawImage(textures.getTexture(ObjectTypes.OTHER, OtherObjects.GPL), gplX, 12*dyn.getHighscoreEntitySize());

@@ -25,12 +25,12 @@ final class Constants {
     final static Color[] EDITOR_BACKGROUND_COLOR = {
             Color.DARKGRAY,         //Empty
             Color.BLACK,            //Wall
-            Color.YELLOW,           //Food (Cell)
-            Color.DARKORANGE,       //Power up (Cell)
+            Color.web("#ffc231"),   //Food (Cell)
+            Color.web("#ff5836"),   //Power up (Cell)
             Color.DARKGRAY,         //Ghost Spawn
-            Color.GREEN,            //Player Spawn
+            Color.DARKGREEN,        //Player Spawn
             Color.DARKGRAY,         //Invisible Player Wall
-            Color.AQUAMARINE,       //Special Item Spawn
+            Color.web("#FF2A99"),   //Special Item Spawn
             Color.DARKGRAY          //Ghost House Spawn
     };
 }

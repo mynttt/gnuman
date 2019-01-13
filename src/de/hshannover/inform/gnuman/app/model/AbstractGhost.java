@@ -34,7 +34,9 @@ public abstract class AbstractGhost extends AbstractEntity {
     private GhostBehaviorState behaviorState;
     private GhostMovementStates movementState, queuedMovementState;
     private MovementFlags movementFlag;
+    private MapCell[] moveAroundInsideSpawn;
     private boolean targetCellReached, pathCompleted, movementStateSwitchQueued, died;
+    private int moveAroundInsideSpawnIndex;
 
     /**
      * Special flags for ghost movement operations.
@@ -56,6 +58,7 @@ public abstract class AbstractGhost extends AbstractEntity {
         this.pathfinding = new AStarPathfinding(collisionData);
         this.path = new LinkedList<>();
         this.persistentTasks = new LinkedList<>();
+        this.moveAroundInsideSpawn = new MapCell[3];
         this.coordinator = coordinator;
         this.stateSupervisor = new InternalGhostStateSupervisor(this);
         reset();
@@ -139,9 +142,14 @@ public abstract class AbstractGhost extends AbstractEntity {
     }
 
     /**
-     * @return Current target tile.
+     * @param p is needed in case we are in chase mode
+     * @return Current target tile (null if none set)
      */
-    public MapCell getCurrentTargetTile() {
+    public MapCell getCurrentTargetTile(Player p) {
+        if(movementState == GhostMovementStates.SCATTER) { return coordinator.getScatterPoint(getEntityType()); }
+        if(movementState == GhostMovementStates.FRIGHTENED || movementState == GhostMovementStates.COOLDOWN) { return null; }
+        if(movementState == GhostMovementStates.WAITING && moveAroundInsideSpawn[0] != null) { return moveAroundInsideSpawn[moveAroundInsideSpawnIndex]; }
+        if(movementState == GhostMovementStates.CHASE) { return decideChaseBehavior(p); }
         return targetedPathTile;
     }
 
@@ -290,21 +298,51 @@ public abstract class AbstractGhost extends AbstractEntity {
     private void startGhost() {
         switch(coordinator.canStart(this)) {
             case LEAVE:
-                setMovementState(GhostMovementStates.LEAVE_BASE); stateSupervisor.start();
+                prepareLeave();
                 break;
             case DELAY:
-                if(timedTasks.taskExists("startdelay")) { return; }
-                timedTasks.createTask("startdelay", getEntityType().getLeaveDelay());
-                transientTasks.add(() -> {
-                    if(timedTasks.isFinished("startdelay")) {
-                        setMovementState(GhostMovementStates.LEAVE_BASE); stateSupervisor.start();
-                        return true;
-                    }
-                    return false;
-                });
-                break;
+                if(!timedTasks.taskExists("startdelay")) {
+                    timedTasks.createTask("startdelay", getEntityType().getLeaveDelay());
+                    transientTasks.add(() -> {
+                        if(timedTasks.isFinished("startdelay")) {
+                            prepareLeave();
+                            return true;
+                        }
+                        return false;
+                    });
+                }
             default:
-                break;
+            //In both cases we want the ghosts to move up and down while waiting
+                moveAroundInsideSpawn();
+        }
+    }
+
+    /**
+     * Let the ghosts move up and down if they are waiting in the ghost house.
+     */
+    private void moveAroundInsideSpawn() {
+        if(moveAroundInsideSpawn[0] == null) { moveAroundInsideSpawn[0] = new MapCell(clampCellX(), clampCellY()+1); moveAroundInsideSpawn[1] = new MapCell(clampCellX(), clampCellY()); moveAroundInsideSpawn[2] = new MapCell(clampCellX(), clampCellY()-1); }
+        if(!pathCompleted) {
+            followPathWithAStar(moveAroundInsideSpawn[moveAroundInsideSpawnIndex]);
+        } else {
+            moveAroundInsideSpawnIndex = ++moveAroundInsideSpawnIndex%moveAroundInsideSpawn.length;
+            pathCompleted = false;
+        }
+    }
+
+    /**
+     * Prepare the leave operation
+     */
+    private void prepareLeave() {
+    //Can leave because either in front of ghost house or in the middle cell
+        if(movementFlag != MovementFlags.CAN_PASS_GHOSTWALL || moveAroundInsideSpawn[0] == null || (!pathCompleted && clampCellY() == moveAroundInsideSpawn[1].getCellY())) {
+            pathCompleted = false; targetedPathTile = null; targetCellReached = true;
+            setMovementState(GhostMovementStates.LEAVE_BASE);
+            stateSupervisor.start();
+        } else {
+    //Need to reach middle cell of up and down animation first
+            pathCompleted = false;
+            followPathWithAStar(moveAroundInsideSpawn[1]);
         }
     }
 
@@ -345,7 +383,7 @@ public abstract class AbstractGhost extends AbstractEntity {
      * Chase mode
      */
     private void chase() {
-        if(targetCellReached) { decideChaseBehavior(coordinator.getPlayer()); }
+        if(targetCellReached) { targetedPathTile = decideChaseBehavior(coordinator.getPlayer()); }
         intersectionDecidedMovementToCell(targetedPathTile);
     }
 
@@ -519,8 +557,9 @@ public abstract class AbstractGhost extends AbstractEntity {
     /**
      * Set a chase target depending on the ghost behavior or switch to another state.
      * @param player player to chase.
+     * @return
      */
-    protected abstract void decideChaseBehavior(Player player);
+    protected abstract MapCell decideChaseBehavior(Player player);
 
     /*
      * Overrides
@@ -536,11 +575,11 @@ public abstract class AbstractGhost extends AbstractEntity {
         movementState = GhostMovementStates.WAITING;
         behaviorState = GhostBehaviorState.NORMAL;
         currentDirection = oldDirection = Directions.NONE;
-        movementStateSwitchQueued = pathCompleted = isSlow = false;
+        movementStateSwitchQueued = pathCompleted = isSlow = died = false;
         movementFlag = (getEntityType() == EntityObjects.BLINKY) ? MovementFlags.NONE : MovementFlags.CAN_PASS_GHOSTWALL;
         targetedPathTile = null;
         targetCellReached = true;
-        died = false;
+        moveAroundInsideSpawnIndex = 0; for(int i = 0; i < moveAroundInsideSpawn.length; i++) { moveAroundInsideSpawn[i] = null; }
         path.clear();
         setSpawn(coordinator.getSpawn(getEntityType()));
         computeSpeed(SpeedTypes.GHOST_NORMAL);

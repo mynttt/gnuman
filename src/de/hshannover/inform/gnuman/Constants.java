@@ -2,6 +2,7 @@ package de.hshannover.inform.gnuman;
 
 import de.hshannover.inform.gnuman.Log.LogLevel;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
 /**
@@ -56,36 +57,6 @@ public final class Constants {
      * True => Draw Cell Coordinates in format x y | False => Don't show that (Default => False) (Needs debug renderer = true)
      */
     public final static boolean DEBUG_DRAW_CELL_COORDINATES = false;
-
-    /*
-     * Debug renderer related
-     */
-    public final static Color DEBUG_GHOST_CURRENT_CELL_COLOR = Color.PINK;
-    public final static Font DEBUG_FONT = new Font("System", 10);
-    public final static Font DEBUG_FONT_SMALL = new Font("System", 7);
-    public final static Color[] DEBUG_RENDERER_COLOR = {
-            Color.WHITE,         //Empty
-            Color.BLACK,         //Wall
-            Color.WHITE,         //Food (Cell)
-            Color.WHITE,         //Power up (Cell)
-            Color.BLUE,          //Ghost Spawn
-            Color.GREEN,         //Player Spawn
-            Color.GRAY,          //Invisible Player Wall
-            Color.BLANCHEDALMOND,//Special Item Spawn
-            Color.RED            //Ghost House Spawn
-    };
-    public final static Color[] DEBUG_RENDER_COLOR_ENTITY = {
-            Color.DARKGREEN,    //Player
-            Color.DARKRED,      //Blinky
-            Color.CYAN,         //Inky
-            Color.PINK,         //Pinky
-            Color.BISQUE        //Clyde
-    };
-    public final static Color[] DEBUG_RENDER_COLOR_ITEM = {
-            Color.DARKGRAY,   //Food
-            Color.ORANGE,     //Power up
-            Color.BISQUE      //Bonus item
-    };
 
     /*
      * Texture related

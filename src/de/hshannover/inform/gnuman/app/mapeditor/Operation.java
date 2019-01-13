@@ -11,7 +11,7 @@ interface Operation {
 
     /**
      * Call the operation with the map data that is to be manipulated.
-     * @param toManipulate
+     * @param toManipulate data we want to manipulate
      */
     void execute(MapData toManipulate);
 }

@@ -15,6 +15,7 @@ import de.hshannover.inform.gnuman.app.AudioManager;
 import de.hshannover.inform.gnuman.app.abstracts.LoopInstruction;
 import de.hshannover.inform.gnuman.app.enums.UIStates;
 import de.hshannover.inform.gnuman.app.modules.GameLoop;
+import de.hshannover.inform.gnuman.app.util.Helper;
 
 /**
  * Launch the game
@@ -110,32 +111,17 @@ public class GameLauncher extends Application {
             launch(args);
         } catch(Exception e) {
             e.printStackTrace();
+            if(Log.hasBeenBootstrapped()) {
+                Log.critical(GameLauncher.class.getSimpleName(), "Critical Error has been detected. It is not possible to recover from this.\n" + Helper.stackTraceToString(e));
+            }
             System.exit(1);
         }
     }
 
-    public static void setFPS(int fps) {
-        primaryStage.setTitle("FPS: " + fps);
-    }
-
-    public static void disableFPSTracking() {
-        primaryStage.setTitle("GNUMAN");
-    }
-
-    public static void hide() {
-        primaryStage.hide();
-    }
-
-    public static void show() {
-        primaryStage.show();
-        primaryStage.sizeToScene();
-    }
-
-    public static Stage getStage() {
-        return primaryStage;
-    }
-
-    public static void centerStage() {
-        primaryStage.centerOnScreen();
-    }
+    public static void setFPS(int fps) { primaryStage.setTitle("FPS: " + fps); }
+    public static void disableFPSTracking() { primaryStage.setTitle("GNUMAN"); }
+    public static void hide() { primaryStage.hide(); }
+    public static void show() { primaryStage.show(); primaryStage.sizeToScene(); }
+    public static void centerStage() { primaryStage.centerOnScreen(); }
+    public static Stage getStage() { return primaryStage; }
 }

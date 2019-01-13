@@ -138,7 +138,7 @@ public class GameSupervisor {
         Log.info(getClass().getSimpleName(), "Refreshing block dependent values and loading map.");
         recordFps = options.trackFps();
         gameLoop.changeSettings(options.getFps(), recordFps);
-        state = GameStates.WAIT_FOR_PLAYER;
+        state = GameStates.MADE_HIGHSCORE;
         dyn.newSession(mapData.getWidthInBlocks(), mapData.getHeightInBlocks(), options.getBlockDimension(), options.getBlockDimension(), options.getFps(), difficulty, options.dynCamera());
         gameCanvas.setWidth(dyn.getGameAreaResolutionWidth());
         gameCanvas.setHeight(dyn.getGameAndUiResolutionHeight());

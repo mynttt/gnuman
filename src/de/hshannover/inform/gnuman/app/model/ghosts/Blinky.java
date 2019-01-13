@@ -47,8 +47,8 @@ public class Blinky extends AbstractGhost {
     }
 
     @Override
-    protected void decideChaseBehavior(Player player) {
-        targetedPathTile = new MapCell(player.clampCellX(), player.clampCellY());
+    protected MapCell decideChaseBehavior(Player player) {
+        return new MapCell(player.clampCellX(), player.clampCellY());
     }
 
     @Override
