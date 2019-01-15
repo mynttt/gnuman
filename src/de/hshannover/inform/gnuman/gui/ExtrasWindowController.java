@@ -1,9 +1,7 @@
 package de.hshannover.inform.gnuman.gui;
 
 import java.io.IOException;
-
 import de.hshannover.inform.gnuman.GameLauncher;
-import de.hshannover.inform.gnuman.app.AudioManager;
 import de.hshannover.inform.gnuman.app.enums.UIStates;
 import de.hshannover.inform.gnuman.app.mapeditor.StartEditor;
 import javafx.fxml.FXML;
@@ -29,7 +27,7 @@ public class ExtrasWindowController extends CommonController {
     private void mapEditor() {
         try {
             GameLauncher.hide();
-            AudioManager.stopAllSounds();
+            GameLauncher.am().stopEntireAudio();
             StartEditor s = new StartEditor();
             s.start();
         } catch (IOException e) {

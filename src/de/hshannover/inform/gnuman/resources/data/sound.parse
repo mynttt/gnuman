@@ -1,0 +1,11 @@
+#Key			File				Initial Volume
+CLICK			click.ogg			0.12
+TYPING			typing.ogg			0.2
+ADD_HIGHSCORE	add_highscore.ogg	0.2
+EATING_GHOST	eating-ghost.ogg 	0.2
+EATING_POWERUP	eat-pill.ogg		0.1
+DIE				die.ogg	 			0.14
+BONUS			bonus.ogg	 		0.15
+GHOST_ATE_ITEM	ghost_ate_item.ogg	0.15
+LEVEL_FINISHED	level_finished.ogg	0.2
+EXTRA_LIFE		extra_life.ogg	 	0.2

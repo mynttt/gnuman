@@ -11,7 +11,7 @@ import de.hshannover.inform.gnuman.app.util.Helper;
 
 public class GameSettings {
     private boolean useArrows, soundOn, musicOn, showFps, dynCamera;
-    private double baseLevelMultiplicator;
+    private float baseLevelMultiplicator;
     private int fps, fpsIndex, blockDimension;
     private int[] possibleFrameRates;
 
@@ -28,7 +28,7 @@ public class GameSettings {
         fpsIndex = 0;
         blockDimension = defaultBlockDimension;
         this.possibleFrameRates = possibleFrameRates;
-        this.baseLevelMultiplicator = 1.0;
+        this.baseLevelMultiplicator = 1.0f;
     }
 
     public boolean isMusicOn() { return musicOn; }
@@ -38,12 +38,12 @@ public class GameSettings {
     public boolean dynCamera() { return dynCamera; }
     public int getFps() { return fps; }
     public int getBlockDimension() { return blockDimension; }
-    public double getBaseLevelMultiplicator() { return baseLevelMultiplicator; }
+    public float getBaseLevelMultiplicator() { return baseLevelMultiplicator; }
     public void setBlockDimension(int newDimension) {
         if(newDimension < 5) { Log.critical(getClass().getSimpleName(), "Block Dimensions < 5 are not supported! Game not playable under your resolution."); Helper.exitOnCritical(); }
         blockDimension = newDimension;
     }
-    public void setBaseLevelMultiplicator(double newBaseLevelMultiplicator) {
+    public void setBaseLevelMultiplicator(float newBaseLevelMultiplicator) {
         if(newBaseLevelMultiplicator <= 0) { return; }
         baseLevelMultiplicator = newBaseLevelMultiplicator;
     }

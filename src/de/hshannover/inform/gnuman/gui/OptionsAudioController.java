@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import de.hshannover.inform.gnuman.Constants;
-import de.hshannover.inform.gnuman.app.AudioManager;
+import de.hshannover.inform.gnuman.GameLauncher;
 import de.hshannover.inform.gnuman.app.enums.UIStates;
 
 /**
@@ -35,10 +35,9 @@ public class OptionsAudioController extends CommonController {
         audioBaseLevelSlider.setValue(100);
         audioBaseLevelSlider.valueProperty().addListener(e -> {
             audioBaseLevelSlider.setValue(Math.round(audioBaseLevelSlider.getValue()));
-            gameOptions.setBaseLevelMultiplicator(audioBaseLevelSlider.getValue()/100);
+            gameOptions.setBaseLevelMultiplicator((float) audioBaseLevelSlider.getValue()/100);
             baseLevelString.setText(String.format("Audio Base Level @ %d%%", (int) audioBaseLevelSlider.getValue()));
-            AudioManager.adjustAll(gameOptions.getBaseLevelMultiplicator());
-
+            GameLauncher.am().adjustAll(gameOptions.getBaseLevelMultiplicator());
         });
     }
 
@@ -46,7 +45,7 @@ public class OptionsAudioController extends CommonController {
     private void toggleMusic() {
         gameOptions.toggleMusic();
         updateMusicButton();
-        AudioManager.toggleMainTheme();
+        GameLauncher.am().toggleMainTheme();
     }
 
     @FXML

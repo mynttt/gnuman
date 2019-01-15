@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import de.hshannover.inform.gnuman.GameLauncher;
-import de.hshannover.inform.gnuman.app.AudioManager;
 import de.hshannover.inform.gnuman.app.enums.gameobjects.EntityObjects;
 import de.hshannover.inform.gnuman.app.enums.gameobjects.StaticObjects;
 import de.hshannover.inform.gnuman.app.mapeditor.Enums.BackgroundRenderStates;
@@ -694,7 +693,7 @@ public class EditorController {
     private void backToGnuman() {
         stage.close();
         GameLauncher.show();
-        AudioManager.startUiMusic();
+        GameLauncher.am().startUiMusic();
     }
 
     private void disableZoom() {

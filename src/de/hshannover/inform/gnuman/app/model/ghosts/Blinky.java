@@ -1,6 +1,6 @@
 package de.hshannover.inform.gnuman.app.model.ghosts;
 
-import de.hshannover.inform.gnuman.app.AudioManager;
+import de.hshannover.inform.gnuman.GameLauncher;
 import de.hshannover.inform.gnuman.app.enums.GhostBehaviorState;
 import de.hshannover.inform.gnuman.app.enums.GhostMovementStates;
 import de.hshannover.inform.gnuman.app.enums.gameobjects.EntityObjects;
@@ -86,7 +86,7 @@ public class Blinky extends AbstractGhost {
             if(elroy == ElroyStates.ONE && tracker.getAllPacDots()-tracker.getEatenPacDots() < tracker.getAllPacDots() * ElroyRules.triggerStageTwoDotModifier(tracker.getLevel())) {
                 elroy = ElroyStates.TWO;
                 computeSpeed(SpeedTypes.GHOST_NORMAL);
-                AudioManager.decideMusic(true, tracker.isFrightened());
+                GameLauncher.am().decideMusic(true, tracker.isFrightened());
             }
         }
     }

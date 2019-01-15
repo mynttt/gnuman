@@ -7,8 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.KeyCode;
 import de.hshannover.inform.gnuman.Constants;
-import de.hshannover.inform.gnuman.app.AudioManager;
-import de.hshannover.inform.gnuman.app.enums.AudioFiles;
+import de.hshannover.inform.gnuman.GameLauncher;
 import de.hshannover.inform.gnuman.app.enums.Difficulty;
 import de.hshannover.inform.gnuman.app.enums.UIStates;
 import de.hshannover.inform.gnuman.gui.components.Highscore;
@@ -69,7 +68,7 @@ public class AddHighscoreController extends CommonController {
         highscore.addToHighscore(gameDifficulty, score, name);
         highscore.saveHighscore();
         highscoreNameField.clear();
-        AudioManager.playSound(AudioFiles.ADD_HIGHSCORE);
+        GameLauncher.am().playSound("ADD_HIGHSCORE");
         ((HighscoreWindowController) manager.getController(UIStates.HIGHSCORE)).resetToFirstValue();
         manager.switchScene(UIStates.MAIN_MENU);
         gameDifficulty = null;

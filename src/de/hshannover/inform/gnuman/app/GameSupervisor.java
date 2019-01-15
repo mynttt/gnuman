@@ -6,7 +6,6 @@ import javafx.scene.layout.BorderPane;
 import de.hshannover.inform.gnuman.GameLauncher;
 import de.hshannover.inform.gnuman.Log;
 import de.hshannover.inform.gnuman.app.abstracts.LoopInstruction;
-import de.hshannover.inform.gnuman.app.enums.AudioFiles;
 import de.hshannover.inform.gnuman.app.enums.Difficulty;
 import de.hshannover.inform.gnuman.app.enums.GameStates;
 import de.hshannover.inform.gnuman.app.model.storage.DynamicVariables;
@@ -60,20 +59,20 @@ public class GameSupervisor {
                 gameInstance.render();
                 if(recordFps) { GameLauncher.setFPS(gameLoop.getFramerate()); }
                 if(gameInstance.isFinished()) {
-                    AudioManager.stopGameMusic();
+                    GameLauncher.am().stopGameMusic();
                     switch(gameInstance.endedState()) {
                     case GAME_LOST:
-                        AudioManager.playSound(AudioFiles.DIE);
-                        AudioManager.startUiMusic();
+                        GameLauncher.am().playSound("DIE");
+                        GameLauncher.am().startUiMusic();
                         if(!gameInstance.trackHighscore()) { state = GameStates.NO_HIGHSCORE_CUSTOM_MAP; return; }
                         state = (madeHighscore()) ? GameStates.MADE_HIGHSCORE : GameStates.NO_HIGHSCORE_YOU_SUCK;
                         break;
                     case NEXT_LEVEL:
-                        AudioManager.playSound(AudioFiles.LEVEL_FINISHED);
+                        GameLauncher.am().playSound("LEVEL_FINISHED");
                         state = GameStates.WAIT_NEXT_LEVEL;
                         break;
                     case LIFE_LOST:
-                        AudioManager.playSound(AudioFiles.DIE);
+                        GameLauncher.am().playSound("DIE");
                         state = GameStates.LIFE_LOST;
                         break;
                     default:
@@ -177,9 +176,10 @@ public class GameSupervisor {
         }
         if(state == GameStates.LIFE_LOST) { gameInstance.prepareLevelAfterLifeLoss(); state = GameStates.RUNNING; }
         if(state == GameStates.WAIT_NEXT_LEVEL) { gameInstance.prepareNextLevel(); state = GameStates.RUNNING; }
-        if(state == GameStates.WAIT_FOR_PLAYER) { state = GameStates.RUNNING;
-            AudioFiles.STARTING_MUSIC.getAudioFile().stop();
-            AudioManager.decideMusic(false, false);
+        if(state == GameStates.WAIT_FOR_PLAYER) {
+            state = GameStates.RUNNING;
+            GameLauncher.am().stopMusic("STARTING_MUSIC");
+            GameLauncher.am().decideMusic(false, false);
         }
     }
 
@@ -205,7 +205,7 @@ public class GameSupervisor {
         if(state == GameStates.NO_HIGHSCORE_YOU_SUCK || state == GameStates.NO_HIGHSCORE_CUSTOM_MAP) {
             gameInstance.resetGame();
             state = GameStates.WAIT_FOR_PLAYER;
-            AudioManager.stopUiMusic();
+            GameLauncher.am().stopUiMusic();
         }
     }
 

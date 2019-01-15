@@ -5,9 +5,7 @@ import javafx.scene.layout.BorderPane;
 import de.hshannover.inform.gnuman.Constants;
 import de.hshannover.inform.gnuman.GameLauncher;
 import de.hshannover.inform.gnuman.Log;
-import de.hshannover.inform.gnuman.app.AudioManager;
 import de.hshannover.inform.gnuman.app.GameSupervisor;
-import de.hshannover.inform.gnuman.app.enums.AudioFiles;
 import de.hshannover.inform.gnuman.app.enums.Difficulty;
 import de.hshannover.inform.gnuman.app.enums.UIStates;
 import de.hshannover.inform.gnuman.app.model.storage.GameSettings;
@@ -91,10 +89,10 @@ public class GameWindowController extends CommonController {
      */
     public void manageHighscoreEvent(boolean madeHighscore) {
         if(madeHighscore) {
-            AudioManager.playSound(AudioFiles.CLICK);
+            GameLauncher.am().playSound("CLICK");
             manager.switchScene(UIStates.ADD_HIGHSCORE);
         } else {
-            AudioManager.playSound(AudioFiles.ADD_HIGHSCORE);
+            GameLauncher.am().playSound("ADD_HIGHSCORE");
             manager.switchScene(UIStates.MAIN_MENU);
         }
         GameLauncher.centerStage();
@@ -115,8 +113,8 @@ public class GameWindowController extends CommonController {
 
     private void switchToPauseMenu() {
         if(supervisor.pauseGame()) {
-            AudioManager.stopAllSounds();
-            AudioManager.playSound(AudioFiles.CLICK);
+            GameLauncher.am().stopEntireAudio();
+            GameLauncher.am().playSound("CLICK");
             manager.switchScene(UIStates.PAUSED);
         }
     }

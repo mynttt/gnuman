@@ -2,8 +2,7 @@ package de.hshannover.inform.gnuman.app.model;
 
 import java.util.LinkedList;
 import de.hshannover.inform.gnuman.Constants;
-import de.hshannover.inform.gnuman.app.AudioManager;
-import de.hshannover.inform.gnuman.app.enums.AudioFiles;
+import de.hshannover.inform.gnuman.GameLauncher;
 import de.hshannover.inform.gnuman.app.enums.Directions;
 import de.hshannover.inform.gnuman.app.enums.GhostBehaviorState;
 import de.hshannover.inform.gnuman.app.enums.GhostMovementStates;
@@ -93,6 +92,8 @@ public abstract class AbstractGhost extends AbstractEntity {
     public void setMovementState(GhostMovementStates newState) {
     //Reset slows if we switch states, states that allow slows will set it again once the persistent task runs.
         if(isSlow) { isSlow = false; }
+    //Return if we are dead but the callback is trying to set a new state
+        if(isEaten() && (newState == GhostMovementStates.SCATTER || newState == GhostMovementStates.CHASE)) { return; }
     //Queue a state switch if we're not in the middle of a target cell. Forcing a switch here will make the ghost behave unexpected and buggy.
         if(!targetCellReached) {
             movementStateSwitchQueued = true;
@@ -246,7 +247,7 @@ public abstract class AbstractGhost extends AbstractEntity {
             }
         //Eat the ghost
             if(behaviorState == GhostBehaviorState.FRIGHTENED && !isEaten()) {
-                AudioManager.playSound(AudioFiles.EATING_GHOST);
+                GameLauncher.am().playSound("EATING_GHOST");
                 tracker.eatGhost();
                 behaviorState = GhostBehaviorState.DEAD;
                 stateSupervisor.pause();
@@ -557,7 +558,7 @@ public abstract class AbstractGhost extends AbstractEntity {
     /**
      * Set a chase target depending on the ghost behavior or switch to another state.
      * @param player player to chase.
-     * @return
+     * @return a map cell with the current target
      */
     protected abstract MapCell decideChaseBehavior(Player player);
 

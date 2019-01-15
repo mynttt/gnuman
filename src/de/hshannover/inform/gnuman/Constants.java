@@ -2,14 +2,11 @@ package de.hshannover.inform.gnuman;
 
 import de.hshannover.inform.gnuman.Log.LogLevel;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
 
 /**
  * Global constants within the game. These are never going to change on runtime.
  * @author Marc Herschel
  */
-
 @SuppressWarnings("unused")
 public final class Constants {
 
@@ -19,7 +16,7 @@ public final class Constants {
     final static String DEBUG_LOG_FILE = "output.log";
     final static String DEBUG_LOG_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss.S";
     final static LogLevel DEBUG_LEVEL_MIN = Log.LogLevel.INFO;
-    final static boolean DEBUG_LOG = false;
+    final static boolean DEBUG_LOG = true;
 
     /*
      * True => No Music/Sound | False => Music/Sound (Default => False)
@@ -57,6 +54,10 @@ public final class Constants {
      * True => Draw Cell Coordinates in format x y | False => Don't show that (Default => False) (Needs debug renderer = true)
      */
     public final static boolean DEBUG_DRAW_CELL_COORDINATES = false;
+    /*
+     * True => Test audio system on startup | False => Don't test (Default => False)
+     */
+    public final static boolean DEBUG_AUDIO_TEST = false;
 
     /*
      * Texture related
@@ -71,7 +72,8 @@ public final class Constants {
     /*
      * File related
      */
-    public final static String FILE_MAP = "/de/hshannover/inform/gnuman/resources/data/map.gnuman";
+    public final static String DATA_PREFIX = "/de/hshannover/inform/gnuman/resources/data/";
+    public final static String FILE_MAP = DATA_PREFIX + "map.gnuman";
 
     /*
      * FXML related
@@ -82,7 +84,8 @@ public final class Constants {
     /*
      * Audio related
      */
-
+    public final static String AUDIO_PARSE_MUSIC = DATA_PREFIX + "music.parse";
+    public final static String AUDIO_PARSE_SOUND = DATA_PREFIX + "sound.parse";
     public final static String AUDIO_FILE_PREFIX = "/de/hshannover/inform/gnuman/resources/audio/";
 
     /*
@@ -105,7 +108,7 @@ public final class Constants {
      * UI related
      */
     final static String GAME_ICON = TEXTURE_PATH_PREFIX + "game/life.png";
-    public final static String MAIN_MENU_WISEDOM = "/de/hshannover/inform/gnuman/resources/data/wisdom.stallman";
+    public final static String MAIN_MENU_WISEDOM = DATA_PREFIX + "wisdom.stallman";
     public final static String OPTIONS_CSS_ENABLED = "options-enabled";
     public final static String OPTIONS_CSS_DISABLED = "options-disabled";
     public final static Color UI_BORDER = Color.web("#FF2A99");
@@ -117,7 +120,7 @@ public final class Constants {
     public final static int INTERJECTION_WIDTH = 1000;
     public final static int INTERJECTION_HEIGHT = 800;
     public final static String INTERJECTION_FONT = "/de/hshannover/inform/gnuman/resources/css/fonts/SourceCodePro-Regular.ttf";
-    public final static String INTERJECTION = "/de/hshannover/inform/gnuman/resources/data/interjection.rms";
+    public final static String INTERJECTION = DATA_PREFIX + "interjection.rms";
 
     /*
      * Canvas related
@@ -138,7 +141,7 @@ public final class Constants {
     public final static int DEFAULT_MAP_WIDTH = 28;
 
     static {
-        if(DEBUG_CANT_DIE || DEBUG_DISABLE_SPEED_ADJUSTMENT || DEBUG_DRAW_CELL_COORDINATES || DEBUG_GHOST_CURRENT_CELL || DEBUG_GHOST_CURRENT_TARGET_TILE || DEBUG_NO_SOUND || DEBUG_RENDERER || DEBUG_USE_OWN_FPS)
-            System.out.println("DEBUG SETTINGS ENABLED!!!");
+        if(DEBUG_CANT_DIE || DEBUG_DISABLE_SPEED_ADJUSTMENT || DEBUG_DRAW_CELL_COORDINATES || DEBUG_AUDIO_TEST ||DEBUG_GHOST_CURRENT_CELL || DEBUG_GHOST_CURRENT_TARGET_TILE || DEBUG_NO_SOUND || DEBUG_RENDERER || DEBUG_USE_OWN_FPS)
+            System.out.println("DEBUG SETTINGS ARE ENABLED!!!");
     }
 }

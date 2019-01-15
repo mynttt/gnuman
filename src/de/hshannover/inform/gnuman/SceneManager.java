@@ -9,8 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import de.hshannover.inform.gnuman.app.AudioManager;
-import de.hshannover.inform.gnuman.app.enums.AudioFiles;
 import de.hshannover.inform.gnuman.app.enums.UIStates;
 import de.hshannover.inform.gnuman.app.model.storage.GameSettings;
 import de.hshannover.inform.gnuman.app.util.Helper;
@@ -52,7 +50,7 @@ public class SceneManager {
             this.mainMenuCalled = false;
 
             GameSettings options = new GameSettings(Constants.DEFAULT_BLOCK_DIMENSIONS, Constants.POSSIBLE_FRAMERATES);
-            AudioManager.currentSettings = options;
+            GameLauncher.createAudioManager(options);
 
             for(UIStates state : UIStates.values()) {
 
@@ -68,7 +66,7 @@ public class SceneManager {
                 if(state != UIStates.ADD_HIGHSCORE) {
                     for(Node node : Helper.getAllNodes(scenes[state.ordinal()].getRoot())) {
                         if(node instanceof Button) {
-                            ((Button) node).addEventFilter(ActionEvent.ACTION, e -> AudioManager.playSound(AudioFiles.CLICK));
+                            ((Button) node).addEventFilter(ActionEvent.ACTION, e -> GameLauncher.am().playSound("CLICK"));
                         }
                     }
                 }
@@ -125,17 +123,17 @@ public class SceneManager {
              */
             if(current == UIStates.LECTURE || current == UIStates.GAME_WINDOW) {
                  new Timer().schedule(new TimerTask(){
-                     
+
                      @Override
                      public void run() {
                          if(current == UIStates.MAIN_MENU && ((MainWindowController) getController(UIStates.MAIN_MENU)).isTickerPaused()) {
-                             startTicker(); 
+                             startTicker();
                          }
-                         this.cancel(); 
+                         this.cancel();
                      }
-                     
+
                  }, 1000, 1000);
-                 
+
             } else {
             /**
              * These scenes do not use a canvas and thus are allowed to instantly start the timer.
@@ -143,10 +141,10 @@ public class SceneManager {
                 startTicker();
             }
         }
-        
+
         rootStage.setScene(scenes[state.ordinal()]);
         current = state;
-        
+
         Log.info(getClass().getSimpleName(), "UI_STATE -> " + state.toString());
     }
 
@@ -183,7 +181,7 @@ public class SceneManager {
     //Oh no! Someone did not call it GNU/Linux...
         ((LectureWindowController) getController(UIStates.LECTURE)).someoneCalledItLinuxInsteadOfGnuLinux();
     }
-    
+
     /*
      * Ugly hack to deal with the bugged first animation of the text ticker.
      */
