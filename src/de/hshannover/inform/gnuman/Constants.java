@@ -16,7 +16,7 @@ public final class Constants {
     final static String DEBUG_LOG_FILE = "output.log";
     final static String DEBUG_LOG_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss.S";
     final static LogLevel DEBUG_LEVEL_MIN = Log.LogLevel.INFO;
-    final static boolean DEBUG_LOG = true;
+    final static boolean DEBUG_LOG = false;
 
     /*
      * True => No Music/Sound | False => Music/Sound (Default => False)
