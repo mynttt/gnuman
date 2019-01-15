@@ -3,8 +3,8 @@ package de.hshannover.inform.gnuman.app;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import java.util.LinkedList;
+import de.hshannover.inform.gnuman.GameLauncher;
 import de.hshannover.inform.gnuman.Log;
-import de.hshannover.inform.gnuman.app.enums.AudioFiles;
 import de.hshannover.inform.gnuman.app.enums.Difficulty;
 import de.hshannover.inform.gnuman.app.enums.Directions;
 import de.hshannover.inform.gnuman.app.enums.GameStates;
@@ -158,8 +158,7 @@ public class GameInstance {
     public void renderSpecial(GameStates state, long renderEntitesAt) {
         switch(state) {
             case WAIT_FOR_PLAYER:
-                if(playStartingMusic && !AudioFiles.STARTING_MUSIC.getAudioFile().isPlaying()) { playStartingMusic = true; AudioManager.playSound(AudioFiles.STARTING_MUSIC); }
-                if(playStartingMusic && AudioFiles.STARTING_MUSIC.getAudioFile().isPlaying()) { playStartingMusic = false;}
+                if(playStartingMusic && !GameLauncher.am().isMusicPlaying("STARTING_MUSIC")) { GameLauncher.am().playMusic("STARTING_MUSIC"); playStartingMusic = false; }
                 renderer.renderWaitForPlayer(map, entities, renderEntitesAt);
                 break;
             case WAIT_NEXT_LEVEL:
@@ -193,8 +192,8 @@ public class GameInstance {
         if(s != null) {
             switch(s) {
             case FOOD:
-                if(System.currentTimeMillis() > lastDotEaten && !AudioFiles.EATING_DOTS.getAudioFile().isPlaying() && !tracker.isFrightened()) {
-                    AudioManager.playSound(AudioFiles.EATING_DOTS);
+                if(System.currentTimeMillis() > lastDotEaten && !GameLauncher.am().isMusicPlaying("EATING_DOTS") && !tracker.isFrightened()) {
+                    GameLauncher.am().beginWithDotsSequence();
                 }
                 tracker.incrementPacDots();
                 tracker.addToScore(10);
@@ -203,7 +202,7 @@ public class GameInstance {
             case POWERUP:
                 evaluateFrighten();
                 tracker.addToScore(50);
-                AudioManager.playSound(AudioFiles.EATING_POWERUP);
+                GameLauncher.am().playSound("EATING_POWERUP");
                 break;
             default: break;
         }
@@ -211,14 +210,14 @@ public class GameInstance {
         entities.updateGhosts();
     //Won, no times left
         if(map.numberOfItems() == 0) {
-            AudioFiles.EATING_DOTS.getAudioFile().stop();
+            GameLauncher.am().stopMusic("EATING_DOTS");
             isFinished = true;
             gameEndState = GameEnded.NEXT_LEVEL;
             Log.info(getClass().getSimpleName(), "Level won: " + tracker.getLevel());
         }
     //We meet a ghost, do we die? Does the game end?
         if(entities.checkIfCollisionKillsPlayer()) {
-            AudioFiles.EATING_DOTS.getAudioFile().stop();
+            GameLauncher.am().stopMusic("EATING_DOTS");
             isFinished = true;
             tracker.removeLife();
             gameEndState = (tracker.getLifes() > 0) ? GameEnded.LIFE_LOST : GameEnded.GAME_LOST;
@@ -226,7 +225,7 @@ public class GameInstance {
             Log.info(getClass().getSimpleName(), "Level lost: " + tracker.getLevel() + " Reason: " + gameEndState);
         }
      //Clear audio if not used
-        if(System.currentTimeMillis() > lastDotEaten || tracker.isFrightened()) { AudioFiles.EATING_DOTS.getAudioFile().stop(); }
+        if(System.currentTimeMillis() > lastDotEaten || tracker.isFrightened()) { GameLauncher.am().stopMusic("EATING_DOTS"); }
      //Bonus Item
         if(tracker.canSpawnBonusItem() && map.bonusItemSpawnable()) {
             map.spawnBonusItem();
@@ -252,12 +251,13 @@ public class GameInstance {
         tracker.adjustDeltaTime(toAdjust);
         timedTasks.adjustDeltaTimeForAllTasks(toAdjust);
         entities.adjustDeltaTime(toAdjust);
+        lastDotEaten = 0;
     }
 
     /**
      * Evaluate current game music.
      */
-    public void evaluateGameMusic() { AudioManager.decideMusic(tracker.isElroy(), tracker.isFrightened()); }
+    public void evaluateGameMusic() { GameLauncher.am().decideMusic(tracker.isElroy(), tracker.isFrightened()); }
 
     /**
      * If the game is finished.
@@ -318,7 +318,7 @@ public class GameInstance {
         tasks.add(() -> {
             if(entities.getPlayer().intersects(map.getBonusItem().getBounds())) {
                 map.removeBonusItem();
-                AudioManager.playSound(AudioFiles.BONUS);
+                GameLauncher.am().playSound("BONUS");
                 tracker.addToScore(BonusRules.evaluate(tracker.getLevel()));
                 timedTasks.cancelTask("bonus-item");
                 return true;
@@ -326,7 +326,7 @@ public class GameInstance {
             //If ghosts eat the items they will turn frightened, in this case we need to set it with a flag to avoid the ConcurrentModificationException
             for(AbstractGhost g : entities.getGhosts()) {
                 if(g.intersects(map.getBonusItem().getBounds())) {
-                    AudioManager.playSound(AudioFiles.GHOST_ATE_ITEM);
+                    GameLauncher.am().playSound("GHOST_ATE_ITEM");
                     map.removeBonusItem();
                     frightenFromGhostEatingItem = true;
                     timedTasks.cancelTask("bonus-item");
@@ -355,6 +355,7 @@ public class GameInstance {
                     tracker.disableFrightening();
                     evaluateGameMusic();
                     renderer.resetFrighteningFlashState();
+                    lastDotEaten = 0;
                     return true;
                 }
                 return false;

@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import de.hshannover.inform.gnuman.GameLauncher;
-import de.hshannover.inform.gnuman.app.AudioManager;
 import de.hshannover.inform.gnuman.app.enums.UIStates;
 
 /**
@@ -73,7 +72,7 @@ public class PauseWindowController extends CommonController {
     private void backToMenu() {
         manager.switchScene(UIStates.MAIN_MENU);
         GameLauncher.centerStage();
-        AudioManager.startUiMusic();
+        GameLauncher.am().startUiMusic();
         ((GameWindowController) manager.getController(UIStates.GAME_WINDOW)).shutdownGame();
     }
 }

@@ -10,7 +10,6 @@ import java.io.File;
 import java.util.ArrayList;
 import de.hshannover.inform.gnuman.GameLauncher;
 import de.hshannover.inform.gnuman.Log;
-import de.hshannover.inform.gnuman.app.AudioManager;
 import de.hshannover.inform.gnuman.app.enums.Difficulty;
 import de.hshannover.inform.gnuman.app.enums.UIStates;
 import de.hshannover.inform.gnuman.app.mapeditor.Dialogs;
@@ -77,7 +76,7 @@ public class NewGameWindowController extends CommonController {
                 int maxDimension = Helper.calculateMaxBlockDimensionsForCustomMap(width, height, map.getWidthInBlocks(), map.getHeightInBlocks());
                 if(gameOptions.getBlockDimension() > maxDimension) { gameOptions.setBlockDimension(maxDimension); }
             }
-            AudioManager.stopUiMusic();
+            GameLauncher.am().stopUiMusic();
             ((GameWindowController) manager.getController(UIStates.GAME_WINDOW)).startCustomMapSession(map, difficulty, gameOptions);
             manager.switchScene(UIStates.GAME_WINDOW);
             GameLauncher.centerStage();
@@ -92,7 +91,7 @@ public class NewGameWindowController extends CommonController {
             int maxDimension = Helper.calculateMaxBlockDimensionForDefaultMap(width, height);
             if(gameOptions.getBlockDimension() > maxDimension) { gameOptions.setBlockDimension(maxDimension); }
         }
-        AudioManager.stopUiMusic();
+        GameLauncher.am().stopUiMusic();
         ((GameWindowController) manager.getController(UIStates.GAME_WINDOW)).startGameSession(difficulty, gameOptions);
         manager.switchScene(UIStates.GAME_WINDOW);
         GameLauncher.centerStage();

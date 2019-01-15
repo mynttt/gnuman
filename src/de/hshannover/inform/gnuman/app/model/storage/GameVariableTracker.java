@@ -1,7 +1,6 @@
 package de.hshannover.inform.gnuman.app.model.storage;
 
-import de.hshannover.inform.gnuman.app.AudioManager;
-import de.hshannover.inform.gnuman.app.enums.AudioFiles;
+import de.hshannover.inform.gnuman.GameLauncher;
 import de.hshannover.inform.gnuman.app.enums.Difficulty;
 import de.hshannover.inform.gnuman.app.rules.GhostFrighteningRules;
 import de.hshannover.inform.gnuman.app.rules.GeneralRules;
@@ -50,7 +49,7 @@ public class GameVariableTracker {
         if((GeneralRules.POSSIBLE_EXTRALIVES < 0 || givenExtraLifes < GeneralRules.POSSIBLE_EXTRALIVES) && extraLifeScore <= 0) {
             lifes++; givenExtraLifes++;
             extraLifeScore = GeneralRules.EXTRA_LIVE_EVERY;
-            AudioManager.playSound(AudioFiles.EXTRA_LIFE); }
+            GameLauncher.am().playSound("EXTRA_LIFE"); }
         score += points; extraLifeScore -= points;
     }
 

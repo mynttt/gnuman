@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 import de.hshannover.inform.gnuman.app.AudioManager;
 import de.hshannover.inform.gnuman.app.abstracts.LoopInstruction;
 import de.hshannover.inform.gnuman.app.enums.UIStates;
+import de.hshannover.inform.gnuman.app.model.storage.GameSettings;
 import de.hshannover.inform.gnuman.app.modules.GameLoop;
 import de.hshannover.inform.gnuman.app.util.Helper;
 
@@ -23,6 +24,7 @@ import de.hshannover.inform.gnuman.app.util.Helper;
  */
 
 public class GameLauncher extends Application {
+    private static AudioManager audioManager;
     private static Stage primaryStage = null;
     private boolean skipped;
     private GameLoop g;
@@ -103,7 +105,8 @@ public class GameLauncher extends Application {
         g.stop();
         SceneManager m = new SceneManager(primaryStage);
         m.callInitialScene(UIStates.MAIN_MENU);
-        AudioManager.startUiMusic();
+        audioManager.startUiMusic();
+        if(Constants.DEBUG_AUDIO_TEST) { audioManager.testAudioFiles(); }
     }
 
     public static void main(String[] args) {
@@ -118,10 +121,12 @@ public class GameLauncher extends Application {
         }
     }
 
+    public static AudioManager am() { return audioManager; }
     public static void setFPS(int fps) { primaryStage.setTitle("FPS: " + fps); }
     public static void disableFPSTracking() { primaryStage.setTitle("GNUMAN"); }
     public static void hide() { primaryStage.hide(); }
     public static void show() { primaryStage.show(); primaryStage.sizeToScene(); }
     public static void centerStage() { primaryStage.centerOnScreen(); }
     public static Stage getStage() { return primaryStage; }
+    public static void createAudioManager(GameSettings settings) { if(audioManager == null) { audioManager = AudioManager.createAudioManager(settings); }}
 }

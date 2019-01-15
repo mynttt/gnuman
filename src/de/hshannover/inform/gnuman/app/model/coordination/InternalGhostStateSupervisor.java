@@ -81,7 +81,7 @@ public class InternalGhostStateSupervisor {
      * @return current global tracked state for ghost.
      */
     public GhostMovementStates getCurrentGlobalState() {
-        return behavior.currentState();
+        return maximumTaskReached ? GhostMovementStates.CHASE : behavior.currentState();
     }
 
     /**
