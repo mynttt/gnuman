@@ -14,6 +14,10 @@ While I do agree with lots of RMSs standpoints it should be noted that I'm neith
 
 I tried to emulate Pacman as good as I could. I hope you can enjoy this game =)
 
+# Requirements
+
+For this version you'll need the Java 8 runtime. The OpenJDK 8 might work but I'm not sure since JavaFX is required. There is also a Java 11 version that seems to work well under Win and most Linux systems. The Java 11 version is much larger as it is packed with all the native libraries to guarantee cross platform compatibility. It works with OpenJDK 11 and JavaSE 11.
+
 # [Get the .jar here!](https://github.com/mynttt/gnuman/releases/tag/1.0.8)
 
 # Screenshots
