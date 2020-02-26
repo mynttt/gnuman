@@ -22,7 +22,7 @@ I tried to emulate Pacman as good as I could. I hope you can enjoy this game =)
 
 1.0.9 requires Java 11. Older versions need Java 8 Oracle JRE/JDK.
 
-# [Get the .jar here!](https://github.com/mynttt/gnuman/releases/tag/latest)
+# [Get the .jar here!](https://github.com/mynttt/gnuman/releases/latest)
 
 # Screenshots
 
