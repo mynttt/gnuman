@@ -1,4 +1,4 @@
-# Gnuman - Satirical Pacman Clone with Map Editor using JavaFX 8.
+# Gnuman - Satirical Pacman Clone with Map Editor using JavaFX
 
 ## Update Feb 2020: Project has been updated to Java 11 due to being requested.
 
