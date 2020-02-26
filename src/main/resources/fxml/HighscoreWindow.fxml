@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="875.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="de.hshannover.inform.gnuman.gui.HighscoreWindowController">
+   <children>
+      <Button id="button-menu" layoutX="38.0" layoutY="532.0" mnemonicParsing="false" onAction="#goToMenu" prefHeight="54.0" prefWidth="390.0" text="BACK TO MENU" />
+      <HBox fx:id="highscoreBox" layoutX="38.0" layoutY="249.0" prefHeight="265.0" prefWidth="800.0" />
+      <Button id="button-menu" fx:id="showNextLevel" layoutX="448.0" layoutY="532.0" mnemonicParsing="false" onAction="#showNextDifficultyLevel" prefHeight="54.0" prefWidth="390.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,113 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'eclipse'
+	id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+jar.enabled = false
+
+version = '1.0.9'
+sourceCompatibility = '11'
+
+repositories {
+    jcenter()
+}
+
+configurations {
+	compile.transitive = true
+	
+	linux {
+		description = 'linux classpath'
+		extendsFrom compile
+	}
+	
+	mac {
+		description = 'mac classpath'
+		extendsFrom compile
+	}
+	
+	win {
+		description ='win classpath'
+		extendsFrom compile
+	}
+}
+
+def currentOS = org.gradle.internal.os.OperatingSystem.current()
+def platform
+if (currentOS.isWindows()) {
+    platform = 'win'
+} else if (currentOS.isLinux()) {
+    platform = 'linux'
+} else if (currentOS.isMacOsX()) {
+    platform = 'mac'
+}
+
+dependencies {
+	// https://mvnrepository.com/artifact/com.googlecode.soundlibs/jorbis
+	compile group: 'com.googlecode.soundlibs', name: 'jorbis', version: '0.0.17.4'
+	// https://mvnrepository.com/artifact/com.googlecode.soundlibs/tritonus-share
+	compile group: 'com.googlecode.soundlibs', name: 'tritonus-share', version: '0.3.7.4'
+	// https://mvnrepository.com/artifact/com.googlecode.soundlibs/vorbisspi
+	compile group: 'com.googlecode.soundlibs', name: 'vorbisspi', version: '1.0.3-1'
+	
+	implementation "org.openjfx:javafx-media:13:${platform}"
+	implementation "org.openjfx:javafx-base:13:${platform}"
+	implementation "org.openjfx:javafx-controls:13:${platform}"
+	implementation "org.openjfx:javafx-fxml:13:${platform}"
+	implementation "org.openjfx:javafx-swing:13:${platform}"
+	implementation "org.openjfx:javafx-web:13:${platform}"
+	implementation "org.openjfx:javafx-graphics:13:${platform}"
+	
+	win "org.openjfx:javafx-media:13:win"
+	win "org.openjfx:javafx-base:13:win"
+	win "org.openjfx:javafx-controls:13:win"
+	win "org.openjfx:javafx-fxml:13:win"
+	win "org.openjfx:javafx-swing:13:win"
+	win "org.openjfx:javafx-web:13:win"
+	win "org.openjfx:javafx-graphics:13:win"
+	
+	linux "org.openjfx:javafx-media:13:linux"
+	linux "org.openjfx:javafx-graphics:13:linux"
+	linux "org.openjfx:javafx-base:13:linux"
+	linux "org.openjfx:javafx-controls:13:linux"
+	linux "org.openjfx:javafx-fxml:13:linux"
+	linux "org.openjfx:javafx-swing:13:linux"
+	linux "org.openjfx:javafx-web:13:linux"
+	
+	mac "org.openjfx:javafx-media:13:mac"
+	mac "org.openjfx:javafx-graphics:13:mac"
+	mac "org.openjfx:javafx-base:13:mac"
+	mac "org.openjfx:javafx-controls:13:mac"
+	mac "org.openjfx:javafx-fxml:13:mac"
+	mac "org.openjfx:javafx-swing:13:mac"
+	mac "org.openjfx:javafx-web:13:mac"
+}
+
+application {
+    mainClassName = 'de.hshannover.inform.gnuman.Main'
+}
+
+task('linuxJar', type: Jar) {
+	appendix = "linux"
+    from { configurations.linux.collect { it.isDirectory() ? it : zipTree(it) }}
+}
+
+task('macJar', type: Jar) {
+	appendix = "mac"
+    from { configurations.mac.collect { it.isDirectory() ? it : zipTree(it) }}
+}
+
+task('winJar', type: Jar) {
+	appendix = "win"
+    from { configurations.win.collect { it.isDirectory() ? it : zipTree(it) }}
+}
+
+configure([linuxJar, macJar, winJar]) {
+	from sourceSets.main.output
+	manifest {
+        attributes "Main-Class": "de.hshannover.inform.gnuman.Main"
+    }
+}
+
+jar.dependsOn linuxJar, macJar, winJar

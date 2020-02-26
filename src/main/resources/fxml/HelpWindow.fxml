@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="875.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="de.hshannover.inform.gnuman.gui.HelpWindowController">
+   <children>
+      <HBox layoutX="38.0" layoutY="538.0" prefHeight="58.0" prefWidth="800.0">
+         <children>
+            <Button id="button-menu" mnemonicParsing="false" onAction="#backToExtras" prefWidth="400.0" text="BACK TO EXTRAS">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button id="button-menu" fx:id="toggle" mnemonicParsing="false" onAction="#togglePage" prefWidth="400.0" text="???" />
+         </children>
+      </HBox>
+      <AnchorPane fx:id="togglePane" layoutX="38.0" layoutY="236.0" prefHeight="290.0" prefWidth="800.0">
+         <children>
+            <AnchorPane prefHeight="290.0" prefWidth="800.0">
+               <children>
+                  <Label layoutX="57.0" layoutY="84.0" text="Richard Matthew Stallman " />
+                  <Text id="help-medium" fill="WHITE" layoutX="1.0" layoutY="29.0" lineSpacing="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are now guarding Richard Stallman on his mission to fight for free software and privacy.&#10;Your goal on every level is to eat all the blue dots.&#10;Each blue dot resembles either a commit to a free software project, a leak of shady business practices or another GPL violation ruled out by court.&#10;There are also megacorporations chasing and trying to stop you from either propagating the free software mindset or defending the right of privacy.&#10;You can however defend yourself using the GPL license power ups that lie around the map.&#10;The corporations will slow down their hunt and call together their legal team to pay as less compensation as possible. " textAlignment="CENTER" wrappingWidth="800.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="290.0" prefWidth="800.0" visible="false">
+               <children>
+                  <ImageView fx:id="blinky" fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text id="help-large" fill="WHITE" layoutX="239.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Microsoft (Blinky)" />
+                  <Text id="help-small" fill="WHITE" layoutX="223.0" layoutY="71.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Microsoft is still furious because of what happened with IE/Edge and the Windows 10 market share. Hates free software with passion since it is hard to make a profit from and knows that Windows could die ASAP if it was not for gamers and office.&#10;&#10;Be careful with how many dots you collect, once Microsoft decides that &#10;you're too close at releasing a free software project that possibly threatens &#10;one of its products, it will erupt in anger and thus increase its speed.&#10;&#10;In chase mode this ghost will always chase you no matter what.&#10;The scatter point is in the top right corner." textAlignment="CENTER" wrappingWidth="599.9999955296516" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="290.0" prefWidth="800.0" visible="false">
+               <children>
+                  <ImageView fx:id="pinky" fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text id="help-large" fill="WHITE" layoutX="242.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Facebook (Pinky)" />
+                  <Text id="help-small" fill="WHITE" layoutX="230.0" layoutY="94.0" lineSpacing="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powered by one of the largest sets of data worldwide and with the help&#10;of Cambridge Analytica this megacorp lead by a lizard.. ahhm.. the Zucc will always attempt to catch you off guard. These ambushes happen faster than Zucc can say &quot;We respect your privacy!&quot; in front of the EU parliament.&#10;&#10;This ghost will always try to ambush you if possible, the scatter corner is the top left one." textAlignment="CENTER" wrappingWidth="580.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="290.0" prefWidth="800.0" visible="false">
+               <children>
+                  <ImageView fx:id="inky" fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text id="help-large" fill="WHITE" layoutX="288.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Google (Inky)" />
+                  <Text id="help-small" fill="WHITE" layoutX="224.0" layoutY="72.0" lineSpacing="6.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This is the most dangerous megacorp of all and surprisingly self-aware.&#10;Recently trashed the slogan &quot;Don't be evil&quot; because its hypocritical even by cooperate standards causing the Google labor aristocrats to rise up. LOL.&#10;&#10;This slimy corporation will chase you the second you dare to question its data processing policies. Will perfectly ambush you using your location and spam you with &quot;Google wants to know your location popups&quot; if you dare to deny.&#10;&#10;In chase mode this ghosts target depends on your and Microsofts position,&#10;the scatter corner is bottom right." textAlignment="CENTER" wrappingWidth="600.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="290.0" prefWidth="800.0" visible="false">
+               <children>
+                  <ImageView fx:id="clyde" fitHeight="200.0" fitWidth="200.0" layoutX="14.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text id="help-large" fill="WHITE" layoutX="293.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apple (Clyde)" />
+                  <Text id="help-small" fill="WHITE" layoutX="223.0" layoutY="70.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Possibly the least dangerous of all if you ignore the massive fanboy army behind it providing an almost endless stream of money and resources.&#10;&#10;Pretends to hate free software while only hating the free part of it.&#10;Profits from open source projects while not paying anything back, effectively harvesting free labor from anyone willing to be taken advantage of.&#10;&#10;Apple is only here to make money, once close enough to inspect your motives it will leave for the bottom left corner to sell new overpriced products to everyone willing to wait in front of their stores for hours. &#10;Just don't visit that corner if you mind being sued." textAlignment="CENTER" wrappingWidth="614.999994635582" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

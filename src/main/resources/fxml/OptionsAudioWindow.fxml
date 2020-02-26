@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="background-rms" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="875.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="de.hshannover.inform.gnuman.gui.OptionsAudioController">
+   <children>
+      <Label id="options-label" fx:id="baseLevelString" layoutX="283.0" layoutY="234.0" text="Audio Base Level @ 100%" />
+      <VBox layoutX="288.0" layoutY="251.0" prefHeight="335.0" prefWidth="300.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Slider fx:id="audioBaseLevelSlider" blockIncrement="5.0" layoutY="35.0" max="300.0" min="25.0" minorTickCount="5" prefHeight="32.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label id="options-label" text="Sound  ">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Button id="button-menu" fx:id="soundButton" mnemonicParsing="false" onAction="#toggleSound" prefHeight="50.0" prefWidth="150.0" text="On">
+                     <HBox.margin>
+                        <Insets left="52.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label id="options-label" text="Music  ">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Button id="button-menu" fx:id="musicButton" mnemonicParsing="false" onAction="#toggleMusic" prefHeight="50.0" prefWidth="150.0" text="On">
+                     <HBox.margin>
+                        <Insets left="52.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button id="button-menu" mnemonicParsing="false" onAction="#goBackToOptions" prefWidth="500.0" text="BACK TO OPTIONS" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

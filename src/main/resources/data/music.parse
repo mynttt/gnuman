@@ -1,0 +1,7 @@
+#Key				File					Initial Volume
+MUSIC_MENU 			track1.ogg				0.07
+MUSIC_ELROY 		music_elroy_active.ogg 	0.05
+MUSIC_NORMAL 		music_speed_normal.ogg 	0.05
+MUSIC_FRIGHTENED	music_frightened.ogg 	0.05
+EATING_DOTS 		eating-continues.ogg 	0.12
+STARTING_MUSIC		start-music.ogg	 		0.1

@@ -1,0 +1,203 @@
+@font-face {
+    src: url('fonts/menu.ttf');
+}
+
+@font-face {
+	src: url('fonts/game.ttf');
+}
+
+#button-menu, #options-enabled, #options-disabled, #options-navigation, #difficulty-selected  {
+	-fx-effect: dropshadow(three-pass-box, rgba(255,40,145,1), 5, 0, 0, 0);
+    -fx-background-color: linear-gradient(#8E2DE2, #4A00E0);
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-font-family: 'FFF Forward';
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-border-radius: 3,2,2,2;
+}
+
+#button-menu, #options-disabled, #options-enabled, #options-navigationText, #difficulty-selected {
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);
+}
+
+#button-menu:hover, #options-disabled:hover, #options-enabled:hover, #options-navigation:hover, #difficulty-selected:hover {
+  	-fx-effect: dropshadow(three-pass-box, rgba(255,40,145,1), 25, 0, 0, 0);
+  	-fx-color: #000;
+    -fx-scale-y: 1.1;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+#button-menu:pressed, #options-disabled:pressed, #options-enabled:pressed, #options-navigation:pressed, #difficulty-selected:pressed {
+    -fx-scale-y: 0.95;
+    -fx-scale-x: 0.95;
+}
+
+#background {
+	-fx-background-image: url("./gnuman-no-rms.jpg");
+	-fx-background-repeat: stretch;   
+	-fx-background-position: center center;
+}
+
+#background-rms {
+	-fx-background-image: url("./gnuman.jpg");
+	-fx-background-repeat: stretch;   
+	-fx-background-position: center center;
+}
+
+#background-pause {
+	-fx-background-image: url("./paused-bg.jpg");
+	-fx-background-position: center center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: stretch 
+}
+
+#paused-overlay {
+	-fx-background-image: url("./paused-overlay.png");
+	-fx-background-size: cover;
+	-fx-background-repeat: no-repeat;
+}
+
+#highscore-top, #highscore-enter {
+	-fx-font-family: 'FFF Forward';
+	-fx-text-fill: white;
+	-fx-font-size: 30px;
+}
+
+#highscore-enter {
+	-fx-font-size: 35px;
+	-fx-font-family: 'Kongtext';
+}
+
+#highscore-enter-info {
+	-fx-font-size: 29px;
+	-fx-border-insets: 6px;
+}
+
+#highscore-result, #highscore-add-field {
+	-fx-alignment: center;
+	-fx-font-family: 'Kongtext';
+	-fx-text-fill: white;
+	-fx-font-size: 25px;
+	-fx-padding: 6px;
+    -fx-border-insets: 6px;
+    -fx-background-insets: 6px;
+}
+
+#highscore-vbox, #highscore-add-field, #help-small, #help-large, #help-medium {
+	-fx-effect: dropshadow(three-pass-box, rgba(255,40,145,1), 5, 0, 0, 0);
+    -fx-background-insets: 0,1,2,3;
+    -fx-background-radius: 3,2,2,2;
+    -fx-padding: 12 30 12 30;
+    -fx-border-color: #FF2A99;
+    -fx-border-radius: 3,2,2,2;
+}
+
+#highscore-add-field {
+	-fx-padding: 0;
+}
+
+#help-large {
+	-fx-font-family: 'FFF Forward';
+	-fx-text-fill: white;
+	-fx-font-size: 30px;
+	-fx-border-width: 0;
+}
+
+#help-medium {
+	-fx-font-family: 'FFF Forward';
+	-fx-text-fill: white;
+	-fx-font-size: 13px;
+	-fx-border-width: 0;
+}
+
+#help-small {
+	-fx-font-family: 'FFF Forward';
+	-fx-text-fill: white;
+	-fx-font-size: 12px;
+	-fx-border-width: 0;
+}
+
+#difficulty-selected {
+	-fx-border-color: #FA238B;
+	-fx-background-color: linear-gradient(#FA238B, #F934FE);
+	-fx-effect: dropshadow(three-pass-box, rgba(216,54,61,1), 5, 0, 0, 0);
+}
+
+#options-label {
+	-fx-text-fill: white;
+	-fx-font-size: 20px;
+	-fx-font-family: 'FFF Forward';
+}
+
+#options-enabled {
+	-fx-border-color: #139C8D;
+	-fx-background-color: linear-gradient(#11998e, #38ef7d);
+	-fx-effect: dropshadow(three-pass-box, rgba(30,182,136,1), 5, 0, 0, 0);
+}
+
+#options-disabled {
+	-fx-border-color: #CB2D3E;
+	-fx-background-color: linear-gradient(#cb2d3e, #ef473a);
+	-fx-effect: dropshadow(three-pass-box, rgba(216,54,61,1), 5, 0, 0, 0);
+}
+
+#options-enabled:hover {
+  	-fx-effect: dropshadow(three-pass-box, rgba(30,182,136,1), 25, 0, 0, 0);
+}
+
+#options-disabled:hover {
+  	-fx-effect: dropshadow(three-pass-box, rgba(216,54,61,1), 25, 0, 0, 0);
+}
+
+#text-ticker-text, #highscore-credits {
+	-fx-font-family: 'FFF Forward';
+	-fx-font-size: 20px;
+	-fx-fill: white;
+	-fx-effect: dropshadow(three-pass-box, rgba(255,40,145,1), 5, 0, 0, 0);
+}
+
+#highscore-credits {
+	-fx-font-size: 28px;
+}
+
+#credits-hover{
+	-fx-background-color: transparent;
+}
+
+#credits-hover:hover {
+	-fx-cursor: hand;
+	-fx-effect: dropshadow(three-pass-box, rgba(255,40,145,1), 25, 0, 0, 0);
+}
+
+.text-field {
+    -fx-border-color: #FF2A99;
+    -fx-border-radius: 40,40,40,40;
+    -fx-background-radius: 40,40,40,40;
+    -fx-font-family: 'Kongtext';
+    -fx-font-size: 25px;
+    -fx-padding: 0, 100, 0, 40;
+}
+
+.text-field:focused {
+    -fx-effect: dropshadow(three-pass-box, rgba(255,40,145,1), 25, 0, 0, 0);
+}
+
+.slider .thumb {
+    -fx-background-image :url("thumb.png"); 
+    -fx-padding: 10;
+    -fx-pref-height: 20;
+    -fx-pref-width: 20;
+    -fx-background-color:transparent;
+}
+
+.track {
+	-fx-background-color: #ff2891;
+	-fx-padding: 5, 5, 5, 5;
+}
+
+.slider .axis { 
+	-fx-tick-label-fill: white;
+}
