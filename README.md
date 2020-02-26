@@ -1,6 +1,6 @@
 # Gnuman - Satirical Pacman Clone with Map Editor using JavaFX 8.
 
-## Update Feb 2020
+## Update Feb 2020: Project has been updated to Java 11 due to being requested.
 
 As our 3rd semester project we had to make a game, I choose to create a Pacman clone. I have no prior experience with game development and never created a GUI application before so the implementation might be a bit messy.
 
@@ -22,7 +22,7 @@ I tried to emulate Pacman as good as I could. I hope you can enjoy this game =)
 
 1.0.9 requires Java 11. Older versions need Java 8 Oracle JRE/JDK.
 
-# [Get the .jar here!](https://github.com/mynttt/gnuman/releases/tag/1.0.8)
+# [Get the .jar here!](https://github.com/mynttt/gnuman/releases/tag/latest)
 
 # Screenshots
 
