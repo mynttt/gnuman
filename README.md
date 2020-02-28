@@ -1,5 +1,7 @@
 # Gnuman - Satirical Pacman Clone with Map Editor using JavaFX
 
+[More about the game can be found here](https://herschel.io/projects/gnuman)
+
 ## Update Feb 2020: Project has been updated to Java 11 due to being requested.
 
 As our 3rd semester project we had to make a game, I choose to create a Pacman clone. I have no prior experience with game development and never created a GUI application before so the implementation might be a bit messy.
