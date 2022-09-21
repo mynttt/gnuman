@@ -23,20 +23,6 @@ public class GameLauncher extends Application {
     private static Stage primaryStage = null;
     private SceneManager m;
     
-    /*
-     * Mitigates the primaryStage.setResizable(false); bug with JavaFX that exists on Linux and stops the stage from resizing
-     * It calculates an offset once (platform dependant window decorations) and then forbids resizing by setting max/min width in the scene manager
-     * This allows to forbid resizing without using the bugged setResizable(false)
-     */
-    
-    public static boolean RUN_LINUX_MITIGATION = false;
-    public static double LINUX_RESIZE_BUG_MITIGATION_OFFSET_X, LINUX_RESIZE_BUG_MITIGATION_OFFSET_Y = 0;
-    
-    static {
-        String os = System.getProperty("os.name").toLowerCase();
-        RUN_LINUX_MITIGATION = os.contains("nix") || os.contains("nux") || os.contains("aix");
-    }
-    
     @Override
     public void start(Stage primaryStage) {
         GameLauncher.primaryStage = primaryStage;
@@ -77,16 +63,7 @@ public class GameLauncher extends Application {
             } catch (InterruptedException e) {}
         }).start();
         
-        if(RUN_LINUX_MITIGATION) {
-            LINUX_RESIZE_BUG_MITIGATION_OFFSET_X = primaryStage.getWidth() - primaryStage.getScene().getWidth();
-            LINUX_RESIZE_BUG_MITIGATION_OFFSET_Y = primaryStage.getHeight() - primaryStage.getScene().getHeight();
-            primaryStage.setMaxWidth(primaryStage.getWidth());
-            primaryStage.setMaxHeight(primaryStage.getHeight());
-            primaryStage.setMinWidth(primaryStage.getWidth());
-            primaryStage.setMinHeight(primaryStage.getHeight());
-        } else {
-            primaryStage.setResizable(false);
-        }
+        primaryStage.setResizable(false);
     }
 
     private void mainMenu() {
