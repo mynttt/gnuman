@@ -142,16 +142,6 @@ public class SceneManager {
             }
         }
         rootStage.setScene(scenes[state.ordinal()]);
-        
-        if(GameLauncher.RUN_LINUX_MITIGATION) {
-            var width = scenes[state.ordinal()].getWidth() + GameLauncher.LINUX_RESIZE_BUG_MITIGATION_OFFSET_X;
-            var height = scenes[state.ordinal()].getHeight() + GameLauncher.LINUX_RESIZE_BUG_MITIGATION_OFFSET_Y;
-            rootStage.setMaxWidth(width);
-            rootStage.setMaxHeight(height);
-            rootStage.setMinWidth(width);
-            rootStage.setMinHeight(height); 
-        }
-        
         current = state;
         Log.info(getClass().getSimpleName(), "UI_STATE -> " + state.toString());
     }
